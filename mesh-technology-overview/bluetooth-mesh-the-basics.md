@@ -26,19 +26,19 @@ All nodes in a mesh network possess at least one NetKey and it is possession of 
 
 ## Elements
 
-Some nodes have multiple, constituent parts, each of which can be independently controlled. In Bluetooth mesh terminology, these parts are called elements. For example, an LED lighting product with three LED lights which if added to a Bluetooth mesh network, would form a single node with three elements, one for each of the individual LED lights.
+Some nodes have multiple, constituent parts, **each of which can be independently controlled**. In Bluetooth mesh terminology, these parts are called **elements**. For example, an LED lighting product with three LED lights which if added to a Bluetooth mesh network, would form a single node with three elements, one for each of the individual LED lights.
 
 ## Messages 
 
 When a node needs to query the status of other nodes or needs to control other nodes in some way, it sends a message of a suitable type. If a node needs to report its status to other nodes, it sends a message. **All communication in the mesh network is “message-oriented” and many message types are defined, each with its own, unique opcode.** 
 
-Messages fall within one of two broad categories; acknowledged or unacknowledged. 
+Messages fall within one of two broad categories; **acknowledged or unacknowledged.** 
 
-Acknowledged messages require a response from nodes that receive them. The response serves two purposes: it confirms that the message it relates to was received, and it returns data relating to the message recipient to the message sender. 
+**Acknowledged messages** require a response from nodes that receive them. The response serves two purposes: it confirms that the message it relates to was received, and it returns data relating to the message recipient to the message sender. 
 
 The sender of an acknowledged message may resend the message if it does not receive the expected response\(s\) and therefore, acknowledged messages must be idempotent. This means that the effect of a given acknowledged message, arriving at a node multiple times, will be the same as it had only been received once. 
 
-Unacknowledged messages do not require a response.
+**Unacknowledged messages** do not require a response.
 
 ## Addresses 
 
@@ -56,7 +56,7 @@ Virtual addresses will likely be preconfigured at the point of manufacture and b
 
 ## Publish/Subscribe 
 
-The act of sending a message is known as publishing. Nodes are configured to select messages sent to specific addresses for processing, and this is known as subscribing. 
+The act of sending a message is known as **publishing**. Nodes are configured to select messages sent to specific addresses for processing, and this is known as **subscribing**. 
 
 Typically, messages are addressed to group or virtual addresses. Group and virtual address names will have readily understood meaning to the end user, making them easy and intuitive to use. In Figure 4, above, we can see that the node “Switch 1” is publishing to group address Kitchen. Nodes Light 1, Light 2, and Light 3 each subscribe to the Kitchen address and therefore receive and process messages published to this address. In other words, Light 1, Light 2, and Light 3 can be switched on or off using Switch 1. 
 
@@ -70,57 +70,57 @@ The use of group and virtual addresses with the publish/ subscribe communication
 
 ## States and Properties 
 
-Elements can be in various conditions and this is represented in Bluetooth mesh by the concept of state values.
+Elements can be in various conditions and this is represented in Bluetooth mesh by the **concept of state** values.
 
-A state is a value of a certain type, contained within an element \(within a server model - see below\). As well as values, States also have associated behaviors and may not be reused in other contexts. 
+**A state is a value of a certain type, contained within an element** \(within a server model - see below\). As well as values, States also have associated behaviors and may not be reused in other contexts. 
 
-As an example, consider a simple light which may either be on or off. Bluetooth mesh defines a state called Generic OnOff. The light would possess this state item and a value of On would correspond to and cause the light to be illuminated whereas a Generic OnOff state value of Off would reflect and cause the light to be switched off. 
+As an example, consider a simple light which may either be on or off. **Bluetooth mesh defines a state called Generic OnOff**. The light would possess this state item and a value of On would correspond to and cause the light to be illuminated whereas a Generic OnOff state value of Off would reflect and cause the light to be switched off. 
 
 The significance of the term Generic will be discussed later. 
 
-Properties are similar to states in that they contain values relating to an element. But they are significantly different to states in other ways. 
+**Properties are similar to states** in that they contain values relating to an element. But they are significantly different to states in other ways. 
 
 Readers who are familiar with Bluetooth LE will be aware of characteristics and recall that they are data types with no defined behaviors associated with them, making them reusable across different contexts. A property provides the context for interpreting a characteristic. 
 
-To appreciate the significance and use of contexts as they relate to properties, consider for example, the characteristic Temperature 8, an 8-bit temperature state type which has a number of associated properties, including Present Indoor Ambient Temperature and Present Outdoor Ambient Temperature. These two properties allow a sensor to publish sensor readings in a way that allows a receiving client to determine the context the temperature value has, making better sense of its true meaning. 
+To appreciate the significance and use of contexts as they relate to properties, consider for example, the characteristic **Temperature 8, an 8-bit temperature** _**state**_ **type which has a number of associated** _**properties**_**, including Present Indoor Ambient Temperature and Present Outdoor Ambient Temperature.** These two properties allow a sensor to publish sensor readings in a way that allows a receiving client to determine the context the temperature value has, making better sense of its true meaning. 
 
-Properties are organized into two categories: Manufacturer, which is a read-only category and Admin which allows read-write access.
+**Properties are organized into two categories: Manufacturer, which is a read-only category and Admin which allows read-write access.**
 
 ## Messages, States and Properties
 
-Messages are the mechanism by which operations on the mesh are invoked. Formally, a given message type represents an operation on a state or collection of multiple state values. All messages are of three broad types, reflecting the types of operation which Bluetooth mesh supports. The shorthand for the three types is GET, SET and STATUS. 
+**Messages are the mechanism by which operations on the mesh are invoked.** Formally, a given message type represents an operation on a state or collection of multiple state values. All messages are of three broad types, reflecting the types of operation which Bluetooth mesh supports. The shorthand for the three types is **GET**, **SET** and **STATUS**. 
 
-GET messages request the value of a given state from one or more nodes. A STATUS message is sent in response to a GET and contains the relevant state value. 
+**GET** messages **request the value of a given state** from one or more nodes. A STATUS message is sent in response to a GET and contains the relevant state value. 
 
-SET messages change the value of a given state. An acknowledged SET message will result in a STATUS message being returned in response to the SET message whereas an unacknowledged SET message requires no response. 
+**SET** messages **change the value of a given state**. An acknowledged SET message will result in a STATUS message being returned in response to the SET message whereas an unacknowledged SET message requires no response. 
 
-STATUS messages are sent in response to GET messages, acknowledged SET messages or independently of other messages, perhaps driven by a timer running on the element sending the message, for example. 
+**STATUS** messages are sent in response to GET messages, acknowledged SET messages or independently of other messages, perhaps driven by a timer running on the element sending the message, for example. 
 
-Specific states referenced by messages are inferred from the message opcode. Properties on the other hand, are referenced explicitly in generic property related messages using a 16-bit property ID. 
+**Specific states referenced by messages are inferred from the message opcode. Properties on the other hand, are referenced explicitly in generic property related messages using a 16-bit property ID.** 
 
 ## State Transitions 
 
-Changes from one state to another are called state transitions. Transitions may be instantaneous or execute over a period of time called the transition time. A state transition is likely to have an effect on the application layer behavior of a node. 
+**Changes from one state to another are called state transitions.** Transitions may be instantaneous or execute over a period of time called the transition time. A state transition is likely to have an effect on the application layer behavior of a node. 
 
 ## Bound States 
 
-Relationships may exist between states whereby a change in one triggers a change in the other. Such a relationship is called a state binding. One state may be bound to multiple other states.
+**Relationships may exist between states whereby a change in one triggers a change in the other.** Such a relationship is called a **state binding**. One state may be bound to multiple other states.
 
 For example, consider a light controlled by a dimmer switch. The light would possess the two states, Generic OnOff and Generic Level with each bound to the other. Reducing the brightness of the light until Generic Level has a value of zero \(fully dimmed\) results in Generic OnOff transitioning from On to Off. 
 
 ## Models 
 
-Models pull the preceding concepts together and define some or all of the functionality of an element as it relates to the mesh network. Three categories of model are recognized. 
+**Models pull the preceding concepts together and define some or all of the functionality of an element as it relates to the mesh network.** Three categories of model are recognized. 
 
-A server model defines a collection of states, state transitions, state bindings and messages which the element containing the model may send or receive. It also defines behaviors relating to messages, states and state transitions. 
+A **server model** defines a collection of states, state transitions, state bindings and messages which the element containing the model may send or receive. It also defines behaviors relating to messages, states and state transitions. 
 
-A client model does not define any states. Instead, it defines the messages which it may send or receive in order to GET, SET or acquire the STATUS of states defined in the corresponding server model. 
+A **client model** does not define any states. Instead, it defines the messages which it may send or receive in order to GET, SET or acquire the STATUS of states defined in the corresponding server model. 
 
-Control models contain both a server model, allowing communication with other client models and a client model which allows communication with server models. 
+**Control models** contain both a server model, allowing communication with other client models and a client model which allows communication with server models. 
 
-Models may be created by extending other models. A model which is not extended is called a root model. 
+**Models may be created by extending other models.** A model which is not extended is called a root model. 
 
-Models are immutable, meaning that they may not be changed by adding or removing behaviors. The correct and only permissible approach to implementing new model requirements is to extend the existing model. 
+**Models are immutable**, meaning that they may not be changed by adding or removing behaviors. The correct and only permissible approach to **implementing new model requirements is to extend the existing model**. 
 
 ## Generics 
 

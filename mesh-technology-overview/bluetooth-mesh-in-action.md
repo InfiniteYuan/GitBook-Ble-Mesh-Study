@@ -1,3 +1,7 @@
+---
+description: 'In this section, we’ll take a closer look at the Bluetooth mesh working.'
+---
+
 # Bluetooth Mesh in Action
 
 ## Message Publication and Delivery 

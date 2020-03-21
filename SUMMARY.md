@@ -3,6 +3,10 @@
 * [Bluetooth mesh development](README.md)
 * [Overview](overview.md)
 
+## Mesh-Technology-Overview
+
+* [Bluetooth Mesh — The Basics](mesh-technology-overview/bluetooth-mesh-the-basics.md)
+
 ## 参考链接 <a id="reference"></a>
 
 * [Bluetooth Mesh](https://www.bluetooth.com/learn-about-bluetooth/bluetooth-technology/mesh/)

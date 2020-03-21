@@ -126,91 +126,91 @@ A **client model** does not define any states. Instead, it defines the messages 
 
 It is recognized that many different types of device, often have semantically equivalent states, as exemplified by the simple idea of ON vs OFF. Consider lights, fans and power sockets, all of which can be switched on or turned off. 
 
-Consequently, the Bluetooth mesh model specification, defines a series of reusable, generic states such as, for example, Generic OnOff and Generic Level. 
+Consequently, the **Bluetooth mesh model specification, defines a series of reusable, generic states** such as, for example, Generic OnOff and Generic Level. 
 
 Similarly, a series of generic messages that operate on the generic states are defined. Examples include Generic OnOff Get and Generic Level Set. 
 
 Generic states and generic messages are used in generalized models, both generic server models such as the Generic OnOff Server and Generic Client Models such as the Generic Level Client. 
 
-Generics allow a wide range of device type to support Bluetooth mesh without the need to create new models. Remember that models may be created by extending other models too. As such, generic models may form the basis for quickly creating models for new types of devices.
+Generics allow a wide range of device type to support Bluetooth mesh without the need to create new models. **Remember that models may be created by extending other models** too. As such, generic models may form the basis for quickly creating models for new types of devices.
 
 ## Scenes 
 
-A scene is a stored collection of states which may be recalled and made current by the receipt of a special type of message or at a specified time. Scenes are identified by a 16-bit Scene Number, which is unique within the mesh network. Scenes allow a series of nodes to be set to a given set of previously stored, complimentary states in one coordinated action.
+**A scene is a stored collection of states which may be recalled and made current by the receipt of a special type of message or at a specified time. Scenes are identified by a 16-bit Scene Number**, which is unique within the mesh network. Scenes allow a series of nodes to be set to a given set of previously stored, complimentary states in one coordinated action.
 
 Imagine that in the evening, you like the temperature in your main family room to be 20 degrees Celsius, the six LED downlights to be at a certain brightness level and the lamp in the corner of the room on the table, set to a nice warm yellow hue. Having manually set the various nodes in this example scenario to these states, you can store them as a scene using a configuration application, and recall the scene later on, either on demand by sending an appropriate, scene-related mesh message or automatically at a scheduled time. 
 
 ## Provisioning 
 
-Provisioning is the process by which a device joins the mesh network and becomes a node. It involves several stages, results in various security keys being generated and is itself a secure process. 
+**Provisioning is the process by which a device joins the mesh network and becomes a node.** It involves several stages, results in various security keys being generated and is itself a secure process. 
 
-Provisioning is accomplished using an application on a device such as a tablet. In this capacity, the device used to drive the provisioning process is referred to as the Provisioner. 
+Provisioning is accomplished using an application on a device such as a tablet. In this capacity, the device used to drive the provisioning process is referred to as the **Provisioner**. 
 
 The provisioning process progresses through five steps and these are described next. 
 
 ### **Step 1. Beaconing** 
 
-In support of various different Bluetooth mesh features, including but not limited to provisioning, new GAP AD types \(ref: Bluetooth Core Specification Supplement\) have been introduced, including the &lt;&gt; AD type. 
+In support of various different Bluetooth mesh features, including but not limited to provisioning, new GAP AD types \(ref: Bluetooth Core Specification Supplement\) have been introduced, including the &lt;Mesh Beacon&gt; AD type. 
 
-An unprovisioned device indicates its availability to be provisioned by using the &lt;&gt; AD type in advertising packets. The user might need to start a new device advertising in this way by, for example, pressing a combination of buttons or holding down a button for a certain length of time. 
+**An unprovisioned device indicates its availability to be provisioned by using the &lt;Mesh Beacon&gt; AD type in advertising packets.** The user might need to start a new device advertising in this way by, for example, pressing a combination of buttons or holding down a button for a certain length of time. 
 
 ### **Step 2. Invitation** 
 
-In this step, the Provisioner sends an invitation to the device to be provisioned, in the form of a Provisioning Invite PDU. The Beaconing device responds with information about itself in a Provisioning Capabilities PDU. 
+**In this step, the Provisioner sends an invitation to the device to be provisioned, in the form of a Provisioning Invite PDU.** The Beaconing device responds with information about itself in a Provisioning Capabilities PDU. 
 
 ### **Step 3. Exchanging Public Keys** 
 
-The Provisioner and the device to be provisioned, exchange their public keys, which may be static or ephemeral, either directly or using an out-of-band \(OOB\) method. 
+**The Provisioner and the device to be provisioned, exchange their public keys, which may be static or ephemeral, either directly or using an out-of-band \(OOB\) method.** 
 
 ### **Step 4. Authentication** 
 
-During the authentication step, the device to be provisioned outputs a random, single or multi-digit number to the user in some form, using an action appropriate to its capabilities. For example, it might flash an LED several times. The user enters the digit\(s\) output by the new device into the Provisioner and a cryptographic exchange takes place between the two devices, involving the random number, to complete the authentication of each of the two devices to the other. 
+**During the authentication step, the device to be provisioned outputs a random, single or multi-digit number to the user in some form, using an action appropriate to its capabilities.** For example, it might flash an LED several times. The user enters the digit\(s\) output by the new device into the Provisioner and a cryptographic exchange takes place between the two devices, involving the random number, to complete the authentication of each of the two devices to the other. 
 
 ### **Step 5. Distribution of the Provisioning Data**
 
-After authentication has successfully completed, a session key is derived by each of the two devices from their private keys and the exchanged, peer public keys. The session key is then used to secure the subsequent distribution of the data required to complete the provisioning process, including a security key known as the network key \(NetKey\). 
+**After authentication has successfully completed, a session key is derived by each of the two devices from their private keys and the exchanged, peer public keys.** The session key is then used to secure the subsequent distribution of the data required to complete the provisioning process, including a security key known as the network key \(NetKey\). 
 
-After provisioning has completed, the provisioned device possesses the network’s NetKey, a mesh security parameter known as the IV Index and a Unicast Address, allocated by the Provisioner. It is now known as a node.
+After provisioning has completed, the provisioned device possesses the network’s **NetKey**, a mesh security parameter known as the **IV Index** and **a Unicast Address**, allocated by the Provisioner. It is now known as a node.
 
 ## Features 
 
-All nodes can transmit and receive mesh messages but there are a number of optional features which a node may possess, giving it additional, special capabilities. There are four such optional features: the Relay, Proxy, Friend, and the Low Power features. A node may support zero or more of these optional features and any supported feature may, at a point in time, be enabled or disabled. 
+All nodes can transmit and receive mesh messages but there are a number of optional features which a node may possess, giving it additional, special capabilities. There are four such optional features: the **Relay**, **Proxy**, **Friend**, and the **Low Power** features. A node may support zero or more of these optional features and any supported feature may, at a point in time, be enabled or disabled. 
 
 ### Relay Nodes 
 
-Nodes which support the Relay feature, known as Relay nodes, are able to retransmit received messages. Relaying is the mechanism by which a message can traverse the entire mesh network, making multiple “hops” between devices by being relayed. 
+Nodes which support the Relay feature, known as **Relay nodes**, are able to **retransmit** received messages. **Relaying is the mechanism by which a message can traverse the entire mesh network, making multiple “hops” between devices by being relayed.** 
 
-Mesh network PDUs include a field called TTL \(Time To Live\). It takes an integer value and is used to limit the number of hops a message will make across the network. Setting TTL to 3, for example, will result in the message being relayed, a maximum number of three hops away from the originating node. Setting it to 0 will result in it not being relayed at all and only traveling a single hop. Armed with some basic knowledge of the topology and membership of the mesh, nodes can use the TTL field to make more efficient use of the mesh network. 
+Mesh network PDUs include a field called **TTL** \(Time To Live\). It takes an integer value and is **used to limit the number of hops** a message will make across the network. Setting TTL to 3, for example, will result in the message being relayed, a maximum number of three hops away from the originating node. Setting it to 0 will result in it not being relayed at all and only traveling a single hop. Armed with some basic knowledge of the topology and membership of the mesh, nodes can use the TTL field to make more efficient use of the mesh network. 
 
 ### Low Power Nodes and Friend Nodes 
 
-Some types of node have a limited power source and need to conserve energy as much as possible. Furthermore, devices of this type may be predominantly concerned with sending messages but still have a need to occasionally receive messages. 
+Some types of node have a limited power source and need to conserve energy as much as possible. **Furthermore, devices of this type may be predominantly concerned with sending messages but still have a need to occasionally receive messages.** 
 
 Consider a temperature sensor which is powered by a small coin cell battery. It sends a temperature reading once per minute whenever the temperate is above or below configured upper and lower thresholds. If the temperature stays within those thresholds it sends no messages. These behaviors are easily implemented with no particular issues relating to power consumption arising. 
 
 However, the user is also able to send messages to the sensor which change the temperature threshold state values. This is a relatively rare event but the sensor must support it. The need to receive messages has implications for duty cycle and as such power consumption. A 100% duty cycle would ensure that the sensor did not miss any temperature threshold configuration messages but use a prohibitive amount of power. A low duty cycle would conserve energy but risk the sensor missing configuration messages. 
 
-The answer to this apparent conundrum is the Friend node and the concept of friendship. 
+The answer to this apparent conundrum is the **Friend node** and the concept of **friendship**. 
 
-Nodes like the temperature sensor in the example may be designated Low Power nodes \(LPNs\) and a feature flag in the sensor’s configuration data will designate the node as such. 
+**Nodes like the temperature sensor in the example may be designated Low Power nodes \(LPNs\) and a feature flag in the sensor’s configuration data will designate the node as such.** 
 
-LPNs work in tandem with another node, one which is not power-constrained \(e.g. it has a permanent AC power source\). This device is termed a Friend node. The Friend stores messages addressed to the LPN and delivers them to the LPN whenever the LPN polls the Friend node for “waiting messages”. The LPN may poll the Friend relatively infrequently so that it can balance its need to conserve power with the timeliness with which it needs to receive and process configuration messages. When it does poll, all messages stored by the Friend are forwarded to the LPN, one after another, with a flag known as MD \(More Data\) indicating to the LPN whether there are further messages to be sent from the Friend node. 
+**LPNs work in tandem with another node, one which is not power-constrained** \(e.g. it has a permanent AC power source\). This device is termed a **Friend node**. **The Friend stores messages addressed to the LPN and delivers them to the LPN whenever the LPN polls the Friend node for “waiting messages”.** The LPN may poll the Friend relatively infrequently so that it can balance its need to conserve power with the timeliness with which it needs to receive and process configuration messages. When it does poll, all messages stored by the Friend are forwarded to the LPN, one after another, with a flag known as MD \(More Data\) indicating to the LPN whether there are further messages to be sent from the Friend node. 
 
-The relationship between the LPN and the Friend node is known as friendship. Friendship is key to allowing very power constrained nodes which need to receive messages, to function in a Bluetooth mesh network whilst continuing to operate in a power-efficient way. 
+The relationship between the LPN and the Friend node is known as **friendship**. Friendship is key to allowing very power constrained nodes which need to receive messages, to function in a Bluetooth mesh network whilst continuing to operate in a power-efficient way. 
 
 ### Proxy Nodes 
 
-There are an enormous number of devices in the world that support Bluetooth LE, most smartphones and tablets being amongst them. In-market Bluetooth devices, at the time Bluetooth mesh was adopted, do not possess a Bluetooth mesh networking stack. They do possess a Bluetooth LE stack however and therefore have the ability to connect to other devices and interact with them using GATT, the Generic Attribute Profile. 
+There are an enormous number of devices in the world that support Bluetooth LE, most smartphones and tablets being amongst them. In-market Bluetooth devices, at the time Bluetooth mesh was adopted, do not possess a Bluetooth mesh networking stack. **They do possess a Bluetooth LE stack however and therefore have the ability to connect to other devices and interact with them using GATT, the Generic Attribute Profile.** 
 
-Proxy nodes expose a GATT interface which Bluetooth LE devices may use to interact with a mesh network. A protocol called the Proxy Protocol, intended to be used with a connection-oriented bearer, such as GATT is defined. GATT devices read and write Proxy Protocol PDUs from within GATT characteristics implemented by the Proxy node. The Proxy node transforms these PDUs to/from mesh PDUs. 
+**Proxy nodes expose a GATT interface which Bluetooth LE devices may use to interact with a mesh network.** A protocol called the Proxy Protocol, intended to be used with a connection-oriented bearer, such as GATT is defined. GATT devices read and write Proxy Protocol PDUs from within GATT characteristics implemented by the Proxy node. The Proxy node transforms these PDUs to/from mesh PDUs. 
 
-In summary, Proxy nodes allow Bluetooth LE devices that do not possess a Bluetooth mesh stack to interact with nodes in a mesh network. 
+In summary, **Proxy nodes allow Bluetooth LE devices that do not possess a Bluetooth mesh stack to interact with nodes in a mesh network.** 
 
 ## Node Configuration 
 
-Each node supports a standard set of configuration states which are implemented within the standard Configuration Server Model and accessed using the Configuration Client Model. Configuration State data is concerned with the node’s capabilities and behavior within the mesh, independently of any specific application or device type behaviors. 
+**Each node supports a standard set of configuration states which are implemented within the standard Configuration Server Model and accessed using the Configuration Client Model.** Configuration State data is concerned with the node’s capabilities and behavior within the mesh, independently of any specific application or device type behaviors. 
 
 For example, the features supported by a node, whether it is a Proxy node, a Relay node and so on, are indicated by Configuration Server states. The addresses to which a node has subscribed are stored in the Subscription List. The network and subnet keys indicating the networks the node is a member of are listed in the configuration block, as are the application keys held by the mode. 
 
-A series of configuration messages allow the Configuration Client Model and Configuration Server Model to support GET, SET and STATUS operations on the Configuration Server Model states.
+**A series of configuration messages allow the Configuration Client Model and Configuration Server Model to support GET, SET and STATUS operations on the Configuration Server Model states.**
 

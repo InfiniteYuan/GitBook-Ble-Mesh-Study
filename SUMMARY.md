@@ -6,6 +6,8 @@
 ## Mesh-Technology-Overview
 
 * [Bluetooth Mesh — The Basics](mesh-technology-overview/bluetooth-mesh-the-basics.md)
+* [Mesh System Architecture](mesh-technology-overview/mesh-system-architecture.md)
+* [Security](mesh-technology-overview/security.md)
 
 ## 参考链接 <a id="reference"></a>
 

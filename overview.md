@@ -39,3 +39,13 @@ All nodes in a BLE mesh can transmit and receive messages but some nodes may hav
 
 ![](.gitbook/assets/specification_node_feature.png)
 
+## Publish/Subscribe
+
+Messages are sent and received using a publish/subscribe paradigm. An outgoing message is published. The only exception is when an acknowledgment message is sent to a specific node that received the behavior-invoking message. Given the advert-based, managed-flood nature of message transmission, the following is a valid question: How long does it take for the message to arrive at the destination? Anecdotally, the best answer is: messages travel at the speed of sound. 
+
+> 使用发布/订阅范式发送和接收消息。 外发消息已发布。 唯一的例外是将确认消息发送到接收到行为调用消息的特定节点时。 考虑到消息传输是基于广告的，管理洪水的性质，以下是一个有效的问题：消息到达目的地需要多长时间？ 有趣的是，最好的答案是：消息以声音的速度传播。
+
+Each message consists of an opcode and context data. The opcode dictates the behavior at the receive end; the data can be up to 380 octets. By the time the application receives a mesh message, it is completely decrypted and given to the app as a plaintext message.
+
+> 每个消息都包含一个操作码和上下文数据。 操作码指示接收端的行为； 数据最多可以包含380个八位位组。 在应用程序收到网格消息时，它已被完全解密并作为纯文本消息提供给应用程序。
+

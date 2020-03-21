@@ -4,7 +4,7 @@ description: >-
   is optimized for creating large-scale device networks.
 ---
 
-# Bluetooth mesh Guide
+# Bluetooth mesh development
 
 Bluetooth has been actively developed since its initial release in 2000, when it was originally intended to act as a cable replacement technology. It soon came to dominate wireless audio products and computer peripherals such as wireless mice and keyboards.
 

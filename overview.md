@@ -22,7 +22,7 @@ BLE mesh networks use relay nodes rather than nodes that function as routers. Ro
 
 Heartbeat messages are sent periodically to indicate a node is still alive and how many hops it may be from another node. This information can be used to optimise the TTL value. 
 
-> 心跳消息会定期发送，以指示一个节点仍处于活动状态，以及它可能来自另一个节点的跳数。此信息可用于优化 TTL 值。
+> 心跳消息会定期发送，以指示一个节点仍处于活动状态，以及它可能来自另一个节点的跳数。此消息可用于优化 TTL 值。
 
 BLE mesh does not make use of connections but rather uses the BLE broadcasts \(advertisements\) introduced with BT4.0. This does not mean that all BT4.0 devices automatically support mesh \(the OS likely needs to expose a new API\) but devices that are BT4.0 devices and newer have the potential to support BLE mesh.
 

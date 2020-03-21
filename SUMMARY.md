@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Bluetooth mesh Guide](README.md)
+* [Overview](overview.md)
 
 ## 参考链接
 

@@ -14,13 +14,13 @@ In contrast, in Bluetooth mesh, **security is mandatory**. **The network, indivi
 
 The following fundamental security statements apply to all Bluetooth mesh networks: 
 
-1. All mesh messages are encrypted and authenticated. 
-2. Network security, application security and device security are addressed independently. See “Separation of Concerns” below. 
-3. Security keys can be changed during the life of the mesh network via a Key Refresh procedure. 
-4. Message obfuscation makes it difficult to track messages sent within the network providing a privacy mechanism to make it difficult to track nodes.
-5. Mesh security protects the network against replay attacks.
-6. The process by which devices are added to the mesh network to become nodes, is itself a secure process.
-7. Nodes can be removed from the network securely, in a way which prevents trashcan attacks. 
+1. **All** mesh messages are encrypted and authenticated. 
+2. Network security, application security and device security are addressed **independently**.
+3. Security keys can be **changed** during the life of the mesh network via a **Key Refresh procedure**.
+4. **Message obfuscation** makes it **difficult to track messages** sent within the network providing a privacy mechanism to make it **difficult to track nodes**.
+5. Mesh security protects the network **against replay attacks**.
+6. The process by which devices are added to the mesh network to become nodes, **（Provisioning）is itself a secure process**.
+7. Nodes can be removed from the network securely, in a way which **prevents trashcan attacks**.
 
 ## Separation of Concerns and Mesh Security Keys
 

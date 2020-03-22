@@ -10,6 +10,11 @@
 * [Security](mesh-technology-overview/security.md)
 * [Bluetooth Mesh in Action](mesh-technology-overview/bluetooth-mesh-in-action.md)
 
+## Mesh Profile Specification
+
+* [Overview of mesh operation](mesh-profile-specification/overview-of-mesh-operation.md)
+* [Architectural concepts](mesh-profile-specification/architectural-concepts.md)
+
 ## 参考链接 <a id="reference"></a>
 
 * [Bluetooth Mesh](https://www.bluetooth.com/learn-about-bluetooth/bluetooth-technology/mesh/)

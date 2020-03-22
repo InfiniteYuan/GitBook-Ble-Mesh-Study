@@ -8,7 +8,7 @@ description: 'In this section, we’ll take a closer look at the Bluetooth mesh 
 
 Bluetooth LE allows the profile designer to exploit a range of different security mechanisms, from the various approaches to pairing that are possible, to individual security requirements associated with individual characteristics. Security is in fact, totally optional, and its permissible to have a device which is completely open, with no security protections or constraints in place. The device designer or manufacturer is responsible for analyzing threats and determining the security requirements and solutions for their product. 
 
-In contrast, in Bluetooth mesh, security is mandatory. The network, individual applications and devices are all secure and this cannot be switched off or reduced in any way.
+In contrast, in Bluetooth mesh, **security is mandatory**. **The network, individual applications and devices are all secure and this cannot be switched off or reduced in any way.**
 
 ## Mesh Security Fundamentals 
 

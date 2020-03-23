@@ -14,6 +14,7 @@
 
 * [Overview of mesh operation](mesh-profile-specification/overview-of-mesh-operation.md)
 * [Architectural concepts](mesh-profile-specification/architectural-concepts.md)
+* [Mesh networking](mesh-profile-specification/mesh-networking.md)
 
 ## 参考链接 <a id="reference"></a>
 

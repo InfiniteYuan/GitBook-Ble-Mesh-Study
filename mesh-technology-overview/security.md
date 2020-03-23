@@ -48,7 +48,7 @@ To deal with this potential conflict of interest, the **mesh uses different secu
 
 As described above, nodes contain various mesh security keys. Should a node become faulty and need to be disposed of, or if the owner decides to sell the node to another owner, it’s important that the device and the keys it contains cannot be used to mount an attack on the network the node was taken from. 
 
-A procedure for removing a node from a network is defined. The Provisioner application is used to add the node to a **black list** and then a process called the **Key Refresh Procedure** is initiated.
+**A procedure for removing a node from a network is defined.** The Provisioner application is used to add the node to a **black list** and then a process called the **Key Refresh Procedure** is initiated.
 
 The Key Refresh Procedure results in all nodes in the network, except for those which are members of the black list from being issued with new network keys, application keys and all related, derived data. In other words, the entire set of security keys which form the basis for network and application security are replaced. 
 

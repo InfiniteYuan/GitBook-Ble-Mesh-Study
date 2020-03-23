@@ -8,9 +8,9 @@ description: >-
 
 ## Overview
 
-A BLE mesh is a collection of up to 32,767 physical BLE devices which send and receive messages to trigger predefined behaviors in the participating nodes. 
+A BLE mesh is a collection of up to **32,767 physical BLE devices** which send and receive messages to trigger predefined behaviors in the participating nodes. 
 
-> BLE mesh 是多达 32,767 个物理 BLE 设备的集合，这些设备发送和接收消息以触发参与节点中的预定义行为。
+> BLE mesh 是多达 **32,767 个物理 BLE 设备**的集合，这些设备发送和接收消息以触发参与节点中的预定义行为。
 
 BLE mesh is a managed flood network which broadcasts \(BLE advertisement\) a message to other nodes that are in range. The receiving nodes re-broadcast \(or relay\) the message to other nodes that are also in range. This continues until the message time to live \(TTL\) expires; once expired, nodes that receive the message no longer re-broadcast it. If a node receives a message that it previously received, it can immediately discard it by matching it against entries in the message cache. 
 
@@ -45,9 +45,9 @@ Messages are sent and received using a publish/subscribe paradigm. An outgoing m
 
 > 使用发布/订阅范式发送和接收消息。 外发消息已发布。 唯一的例外是将确认消息发送到接收到行为调用消息的特定节点时。 考虑到消息传输是基于广告的，管理洪水的性质，以下是一个有效的问题：消息到达目的地需要多长时间？ 有趣的是，最好的答案是：消息以声音的速度传播。
 
-Each message consists of an opcode and context data. The opcode dictates the behavior at the receive end; the data can be up to 380 octets. By the time the application receives a mesh message, it is completely decrypted and given to the app as a plaintext message.
+**Each message consists of an opcode and context data.** The opcode dictates the behavior at the receive end; the data can be **up to 380 octets**. By the time the application receives a mesh message, it is completely decrypted and given to the app as a plaintext message.
 
-> 每个消息都包含一个操作码和上下文数据。 操作码指示接收端的行为； 数据最多可以包含380个八位位组。 在应用程序收到网格消息时，它已被完全解密并作为纯文本消息提供给应用程序。
+> **每个消息都包含一个操作码和上下文数据**。 操作码指示接收端的行为； 数据**最多可以包含 380 个八位位组**。 在应用程序收到网格消息时，它已被完全解密并作为纯文本消息提供给应用程序。
 
 ## Provisioning
 

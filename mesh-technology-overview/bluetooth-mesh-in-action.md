@@ -42,7 +42,7 @@ A node, receiving a message, passes it up the stack from the underlying **Blueto
 
 The network layer applies various **checks** to decide whether or not to pass the message higher up the stack or to discard it.
 
-In addition, PDUs have a Network ID field, which provides a fast way to determine which NetKey the message was encrypted with. If the NetKey is not recognized by the **network layer** on the receiving node, this indicates it does not possess the corresponding NetKey, is not a member of that subnet and so the PDU is discarded. There’s also a network message integrity check \(MIC\) field. If the MIC check fails, using the NetKey corresponding to the PDUs Network ID, then the message is discarded.
+In addition, PDUs have a Network ID field, which provides a fast way to determine which NetKey the message was encrypted with. If the NetKey is not recognized by the **network layer** on the receiving node, this indicates it does not possess the corresponding NetKey, is not a member of that subnet and so the PDU is discarded. There’s also a network **message integrity check** \(MIC\) field. If the MIC check fails, using the NetKey corresponding to the PDUs Network ID, then the message is discarded.
 
 Messages, are received by all nodes in range of the node that sent the messages but many will be quickly discarded when it becomes apparent they are not relevant to this node due to the network or subnet\(s\) it belongs to.
 

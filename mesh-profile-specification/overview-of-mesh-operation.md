@@ -41,7 +41,7 @@ An unprovisioned device cannot send or receive mesh messages; however, it advert
 
 A node can send or receive mesh messages and is managed by a **Configuration Client**, that may also be the same device as the Provisioner, over the mesh network to configure how the node communicates with other nodes. A **Configuration Client** can **remove** a node from a mesh network, which reverts it back to an unprovisioned device. 
 
-A **device** may **support** **multiple instances of a node** by offering itself to be **provisioned to another mesh network** after already being **provisioned to a mesh network**. Each instance of a mesh network is determined by addresses and a device key obtained by the device during provisioning.
+A **device** may **support** **multiple instances of a node** by offering itself to be **provisioned to another mesh network** after already being **provisioned to a mesh network**. E**ach instance of a mesh network is determined by addresses and a device key** obtained by the device during provisioning.
 
 ## Adding devices to a mesh network 
 

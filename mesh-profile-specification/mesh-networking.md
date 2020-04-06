@@ -244,6 +244,16 @@ The Lower Transport PDU is used to transmit Upper Transport PDUs to another node
 | 1 | 0 | Unsegmented Control Message |
 | 1 | 1 | Segmented Control Message |
 
+### Segmentation and reassembly
+
+**To transmit Upper Transport PDUs larger than 15 octets, the lower transport layer segments and reassembles Upper Transport PDUs.** These segments are delivered to the peer lower transport layer using a block acknowledgment scheme to minimize the number of messages that need to be transmitted by the lower transport layer.
+
+![Figure 3.14: Example of segmentation and reassembly for a two-segment PDU](../.gitbook/assets/segmentation.png)
+
+Figure 3.14 illustrates an Upper Transport Access PDU being sent that has a single octet opcode, 3 octets for the NetKeyIndexAndAppKeyIndex field, and 16 octets for the AppKey. This means that when encrypted and authenticated with an application key, the Upper Transport PDU is 24 octets. This is segmented by the lower transport layer into two segments, Segment 0 and Segment 1. Each segment has a header that identifies the segment number and is then passed to the network layer, where the complete Network PDU is computed. The network layer then encrypts the Network PDU using the sequence number for that Network PDU and then obfuscates those messages so that only the NID \(and IV Index\) octet is visible in clear text. Therefore, the single access message can be delivered securely using two Network PDUs.
+
+The process of segmentation for Upper Transport Access PDUs and Upper Transport Control PDUs is identical, and the description below considers these two PDU types to be identical except where explicitly stated.
+
 ## Upper transport layer
 
 ## Access layer

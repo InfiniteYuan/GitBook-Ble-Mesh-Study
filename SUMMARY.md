@@ -12,6 +12,7 @@
 
 ## Mesh Profile Specification
 
+* [Layered architecture](mesh-profile-specification/layered-architecture.md)
 * [Overview of mesh operation](mesh-profile-specification/overview-of-mesh-operation.md)
 * [Architectural concepts](mesh-profile-specification/architectural-concepts.md)
 * [Mesh networking](mesh-profile-specification/mesh-networking.md)

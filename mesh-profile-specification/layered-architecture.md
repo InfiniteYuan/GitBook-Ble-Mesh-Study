@@ -14,7 +14,7 @@ The Mesh Profile specification is defined as a layered architecture.
 
 The Model layer defines models that are used to standardize the operation of typical user scenarios and are defined in the Bluetooth Mesh Model specification or other higher layer specifications. Examples of higher layer model specifications include models for lighting and sensors.
 
-Foundation Model layer
+## Foundation Model layer
 
 The Foundation Model layer defines the states, messages, and models required to configure and manage a mesh network.
 

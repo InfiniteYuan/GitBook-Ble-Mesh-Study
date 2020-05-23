@@ -24,3 +24,7 @@
 * [Introduction Bluetooth Mesh Networking for Developers](https://www.bluetooth.com/bluetooth-resources/bluetooth-mesh-networking-an-introduction-for-developers/?utm_campaign=mesh&utm_source=internal&utm_medium=blog&utm_content=the-fundamental-concepts-of-bluetooth-mesh-networking-part-2)
 * [Answers to Your Questions About Bluetooth Mesh](https://www.bluetooth.com/blog/answers-to-your-questions-about-bluetooth-mesh/)
 
+## Lighting
+
+* [Lighting](lighting/lighting-model.md)
+

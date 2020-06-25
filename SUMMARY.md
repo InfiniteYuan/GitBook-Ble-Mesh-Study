@@ -16,6 +16,10 @@
 * [Architectural concepts](mesh-profile-specification/architectural-concepts.md)
 * [Mesh networking](mesh-profile-specification/mesh-networking.md)
 
+## Bluetooth Mesh Models
+
+* [What is a Mesh Model?](bluetooth-mesh-models/what-is-a-mesh-model.md)
+
 ## Lighting
 
 * [Lighting](lighting/lighting-model.md)

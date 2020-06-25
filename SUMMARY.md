@@ -1,5 +1,6 @@
 # Table of contents
 
+* [Bluetooth Mesh Introduction](README.md)
 * [Bluetooth Mesh Introduction](bluetooth-mesh-introduction.md)
 
 ## Mesh Technology Overview

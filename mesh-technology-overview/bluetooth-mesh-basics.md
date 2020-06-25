@@ -4,7 +4,7 @@ description: >-
   concepts.
 ---
 
-# Bluetooth Mesh — The Basics
+# Bluetooth Mesh Basics
 
 ## Mesh vs. Point-to-Point
 

@@ -24,7 +24,11 @@
 
 * [Bluetooth Mesh](https://www.bluetooth.com/learn-about-bluetooth/bluetooth-technology/mesh/)
 * [BLE Mesh Introduction](https://connectivity-staging.s3.us-east-2.amazonaws.com/s3fs-public/2018-10/BLE%20Mesh%20Introduction.pdf)
+* [Bluetooth Mesh Glossary of Terms](https://www.bluetooth.com/learn-about-bluetooth/bluetooth-technology/topology-options/le-mesh/mesh-glossary/)
+* [Bluetooth mesh networking FAQs](https://www.bluetooth.com/learn-about-bluetooth/bluetooth-technology/topology-options/le-mesh/mesh-faq/)
 * [Introducing Bluetooth Mesh Networking](https://www.bluetooth.com/blog/introducing-bluetooth-mesh-networking/)
 * [Introduction Bluetooth Mesh Networking for Developers](https://www.bluetooth.com/bluetooth-resources/bluetooth-mesh-networking-an-introduction-for-developers/?utm_campaign=mesh&utm_source=internal&utm_medium=blog&utm_content=the-fundamental-concepts-of-bluetooth-mesh-networking-part-2)
+* [Bluetooth Mesh Models - A Technical Overview](https://www.bluetooth.com/bluetooth-resources/bluetooth-mesh-models/)
 * [Answers to Your Questions About Bluetooth Mesh](https://www.bluetooth.com/blog/answers-to-your-questions-about-bluetooth-mesh/)
+* [Qualified Mesh Products](https://www.bluetooth.com/learn-about-bluetooth/bluetooth-technology/topology-options/le-mesh/mesh-qualified/)
 

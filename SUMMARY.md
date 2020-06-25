@@ -1,13 +1,12 @@
 # Table of contents
 
-* [Bluetooth mesh development](README.md)
-* [Overview](overview.md)
+* [Bluetooth Mesh Introduction](bluetooth-mesh-introduction.md)
 
-## Mesh-Technology-Overview
+## Mesh Technology Overview
 
-* [Bluetooth Mesh — The Basics](mesh-technology-overview/bluetooth-mesh-the-basics.md)
+* [Bluetooth Mesh Basics](mesh-technology-overview/bluetooth-mesh-basics.md)
 * [Mesh System Architecture](mesh-technology-overview/mesh-system-architecture.md)
-* [Security](mesh-technology-overview/security.md)
+* [Mesh Security](mesh-technology-overview/mesh-security.md)
 * [Bluetooth Mesh in Action](mesh-technology-overview/bluetooth-mesh-in-action.md)
 
 ## Mesh Profile Specification

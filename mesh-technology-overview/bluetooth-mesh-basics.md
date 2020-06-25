@@ -1,6 +1,6 @@
 ---
 description: >-
-  In this section, we’ll explore the mostfundamental of these terms and
+  In this section, we’ll explore the most fundamental of these terms and
   concepts.
 ---
 

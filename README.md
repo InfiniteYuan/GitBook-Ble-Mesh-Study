@@ -52,10 +52,10 @@ BLE mesh does not make use of connections but rather uses the BLE broadcasts \(a
 
 All nodes in a BLE mesh can transmit and receive messages but some nodes may have one or more specific features.
 
-* Relay node – Can receive and rebroadcast a message 
-* Low power node – Spends most of its time in a low power state with its radio turned off 
-* Friend node – Works alongside a low power node by storing and forwarding messages intended for a low power node when polled by the low power node 
-* Proxy node – Devices without a mesh stack can interact with devices in a BLE mesh using a GATT bearer to a proxy node.
+* **Relay node** – Can receive and rebroadcast a message 
+* **Low power node** – Spends most of its time in a low power state with its radio turned off 
+* **Friend node** – Works alongside a low power node by storing and forwarding messages intended for a low power node when polled by the low power node 
+* **Proxy node** – Devices without a mesh stack can interact with devices in a BLE mesh using a GATT bearer to a proxy node.
 
 ![](.gitbook/assets/specification_node_feature.png)
 

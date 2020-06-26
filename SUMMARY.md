@@ -19,6 +19,10 @@
 ## Bluetooth Mesh Models
 
 * [What is a Mesh Model?](bluetooth-mesh-models/what-is-a-mesh-model.md)
+* [Overview of Mesh Models](bluetooth-mesh-models/overview-of-mesh-models.md)
+* [A Guided Tour of Foundation Models](bluetooth-mesh-models/a-guided-tour-of-foundation-models.md)
+* [A Guided Tour of Generic Models](bluetooth-mesh-models/a-guided-tour-of-generic-models.md)
+* [A Guided Tour of Lighting Models](bluetooth-mesh-models/a-guided-tour-of-lighting-models.md)
 
 ## Lighting
 

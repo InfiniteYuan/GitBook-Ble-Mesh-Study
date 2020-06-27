@@ -72,11 +72,11 @@ Figure 2 depicts the relationships the light lightness server model has with oth
 
 A number of states are involved in the control of lightness and contained within these models. Understanding these states will provide a good start to understanding the models.
 
-The light lightness state is a composite state, consisting of the light lightness linear, light lightness actual, light lightness last, and light lightness default states.
+**The light lightness state is a composite state, consisting of the light lightness linear, light lightness actual, light lightness last, and light lightness default states.**
 
-There are two distinct ways that lightness may be changed using these models. The light lightness linear state provides control along a linear scale, but which people will perceive as non-linear lightness changes. Conversely, the light lightness actual state provides control along a non-linear scale that produces lightness changes perceived by people as being linear.
+There are **two distinct ways** that lightness may be changed using these models. The light lightness linear state provides control along a linear scale, but which people will perceive as non-linear lightness changes. Conversely, the light lightness actual state provides control along a non-linear scale that produces lightness changes perceived by people as being linear.
 
-A range of supported lightness levels, from a minimum level to a maximum level, may be set for the server using its setup model, which contains the light lightness range state, a composite state that includes the light lightness range min state, and the light lightness range max state. The configured range is used in lightness state transitions to ensure only valid, supported values are used by the model.
+**A range of supported lightness levels, from a minimum level to a maximum level, may be set for the server using its setup model**, which contains the light lightness range state, a composite state that includes the light lightness range min state, and the light lightness range max state. The configured range is used in lightness state transitions to ensure only valid, supported values are used by the model.
 
 In addition to states concerned with controlling lightness on a given scale, there are states concerned with restoring the lightness level when the device is switched back on or powered up. These are the light lightness last state and light lightness default state, both of which are involved in the functioning of the generic power onoff server model.
 

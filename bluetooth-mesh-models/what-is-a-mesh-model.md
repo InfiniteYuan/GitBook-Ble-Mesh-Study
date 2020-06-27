@@ -39,19 +39,43 @@ Models defined by the Bluetooth Special Interest Group \(SIG\) in the Bluetooth 
 
 ### Object Orientation 
 
-Software developers should find it easy to imagine model specifications as being akin to classes in the object-oriented \(OO\) software engineering paradigm and model implementations in code inside a device as an instance of the model or object. The Bluetooth mesh specifications do not stipulate any particular approach to implementing models in code; that’s left to the developer and the programming language and APIs in use. But models do lend themselves to an object-oriented approach, and the specification even talks about one model extending another, a concept that is also reminiscent of OO. 
+**Software developers should find it easy to imagine model specifications as being akin to classes in the object-oriented \(OO\) software engineering paradigm and model implementations in code inside a device as an instance of the model or object.** The Bluetooth mesh specifications do not stipulate any particular approach to implementing models in code; that’s left to the developer and the programming language and APIs in use. But models do lend themselves to an object-oriented approach, and the specification even talks about one model extending another, a concept that is also reminiscent of OO. 
 
 ### SDK Variations 
 
-There are a number of SDKs \(software developer kit\) for developing mesh firmware. Some are from Bluetooth module vendors that are specific to creating code for their modules. Others, such as the Zephyr RTOS SDK, are hardware agnostic and allow for the creation of firmware for numerous different target boards. At this time, Zephyr supports 100 different target boards. Whatever SDK you use, the principals involved in implementing mesh firmware will be the same. In this paper, code created with the Zephyr SDK will be presented as a way of illustrating points from a developer’s point of view.
+There are a number of SDKs \(software developer kit\) for developing mesh firmware. Some are from Bluetooth module vendors that are specific to creating code for their modules. Others, such as the **Zephyr RTOS SDK, are hardware agnostic and allow for the creation of firmware for numerous different target boards.** At this time, Zephyr supports 100 different target boards. Whatever SDK you use, the principals involved in implementing mesh firmware will be the same. In this paper, code created with the Zephyr SDK will be presented as a way of illustrating points from a developer’s point of view.
 
 ### Node Composition 
 
-One of the first key tasks a mesh firmware developer must undertake is to define their product’s mesh node composition. This means defining in code how many elements the node has and what models each of the elements contains. Figure 1 shows the relationships between the node, its elements, the models contained within elements, and the items of state that each model contains. 
+**One of the first key tasks a mesh firmware developer must undertake is to define their product’s mesh node composition.** This means defining in code how many elements the node has and what models each of the elements contains. Figure 1 shows the relationships between the node, its elements, the models contained within elements, and the items of state that each model contains. 
 
 ![Figure 1 &#x2014; Node Composition](../.gitbook/assets/node_composition.png)
 
 Details will vary across SDKs, but using the Zephyr SDK node composition involves creating a series of arrays, each of which contains structs defined by macros that the SDK provides. It might look something like the example above that shows four models belonging to an element, which is the sole element of the node. 
+
+```text
+// models - an array of specific model definitions
+static struct bt _ mesh _ model sig _ models[] = {
+BT _ MESH _ MODEL _ CFG _ SRV(&cfg _ srv),
+BT _ MESH _ MODEL _ CFG _ CLI(&cfg _ cli),
+BT _ MESH _ MODEL _ HEALTH _ SRV(&health _ srv, &health _ pub),
+BT _ MESH _ MODEL(BT _ MESH _ MODEL _ ID _ GEN _ ONOFF _ SRV,
+generic _ onoff _ op,
+&generic_onoff_pub, NULL),
+BT _ MESH _ MODEL(BT _ MESH _ MODEL _ ID _ GEN _ LEVEL _ SRV,
+generic _ level _ op,
+&generic_level_pub, NULL)};
+// elements - contains arrays of SIG models and vendor models (none in
+this case)
+static struct bt _ mesh _ elem elements[] = {
+BT _ MESH _ ELEM(0, sig _ models, BT _ MESH _ MODEL _ NONE),
+};
+// node composition - contains an array of elements
+static const struct bt _ mesh _ comp comp = {
+.elem = elements,
+.elem _ count = ARRAY _ SIZE(elements),
+};
+```
 
 ### Properties
 
@@ -61,6 +85,10 @@ There are two forms that data items can take in a Bluetooth mesh model.
 * **Properties**, on the other hand, **are instances of characteristics to be interpreted in a given context. Characteristics are also used with GATT.** A characteristic defines the fields its value consists of, such as permissible values and their meaning and, in the case of GATT, includes an explicit type identifier in the form of a UUID \(universally unique identifier\). When used in GATT, characteristics are members of services, and the service that owns a characteristic provides a context within which to interpret and work with the characteristic. For example, the Alert Level characteristic can be a member of either the Link Loss service or the Immediate Alert service. The meaning of the characteristic varies depending on which service it is a member of, and this is defined in the GATT service specification.
 
 Bluetooth mesh does not use GATT services. Instead, properties provide context for interpreting a related characteristic.
+
+> “The Temperature 8 Characteristic is a type which represents a temperature measurement, has a format of uint8, and uses units of 0.5 degrees Celsius. Several properties are defined for this characteristic, thus allowing it to be interpreted in various contexts. The Present Indoor Ambient Temperature property indicates that the Temperature 8 characteristic should be interpreted as being a measurement which was taken indoors, whereas the Present Outdoor Ambient Temperature property relates to measurements taken outdoors, and the Present Ambient Temperature property is not specific about the type of location, and this is left to be derived from other location properties.”
+
+> “温度8特性是代表温度测量的类型，格式为uint8，单位为0.5摄氏度。 为此特性定义了几个属性，因此可以在各种情况下对其进行解释。 当前室内环境温度属性表示应该将温度8特性解释为在室内进行的测量，而当前室外环境温度属性与在室外进行的测量有关，并且当前环境温度属性并不具体针对温度类型。 位置，则可以从其他位置属性中导出。”
 
 **Properties are explicitly identified by a Property ID.** In a model where a property is in use, the property ID and property value comprise the value of a state. For example, **the sensor data state contains one or more pairs of property ID and a corresponding sensor value.** 
 

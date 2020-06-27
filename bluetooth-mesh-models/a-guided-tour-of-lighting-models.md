@@ -100,7 +100,7 @@ Legacy lighting control requires the installation of dedicated, physical devices
 
 ![Figure 4 -The Bluetooth Mesh Decentralized Controller Architecture](../.gitbook/assets/the-bluetooth-mesh-decentralized-controller.png)
 
-Bluetooth mesh lighting control is entirely software based and supports a superior, decentralized controller architecture with the controller embedded in the lights rather than in physically separate hardware devices. There are cost advantages and, as described in an article on Bluetooth mesh and scalability, significant performance advantages to this approach. Figure 14 illustrates the Bluetooth mesh decentralized controller architecture.
+Bluetooth mesh lighting control is entirely software based and supports a superior, decentralized controller architecture with the controller embedded in the lights rather than in physically separate hardware devices. There are cost advantages and, as described in an article on Bluetooth mesh and scalability, significant performance advantages to this approach. Figure 4 illustrates the Bluetooth mesh decentralized controller architecture.
 
 ### Of States and States Machines
 
@@ -125,7 +125,7 @@ The following controller states are defined as part of the lighting controllerâ€
 
 Figure 6.7 of the Bluetooth Mesh Model Specification provides a diagrammatic reference to the controllerâ€™s finite state machine, showing the set of controller states, the valid transitions between states, and the events that trigger them.
 
-Figure 6.4 from the specification shows an example of the controller states being transitioned through and the effect this has on lightness levels at each stage. It is repeated here in Figure 15 for convenience.
+Figure 6.4 from the specification shows an example of the controller states being transitioned through and the effect this has on lightness levels at each stage. It is repeated here in Figure 5 for convenience.
 
 ### Transition Times
 

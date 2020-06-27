@@ -92,7 +92,7 @@ Bluetooth mesh does not use GATT services. Instead, properties provide context f
 
 **Properties are explicitly identified by a Property ID.** In a model where a property is in use, the property ID and property value comprise the value of a state. For example, **the sensor data state contains one or more pairs of property ID and a corresponding sensor value.** 
 
-Properties allow the same model to be used with a wide range of data types, which, in the case of models like the sensor server model, is hugely advantageous since any type of sensor data can be handled and interpreted with respect to any context, provided a suitable property has been defined. Without this approach to describing and encapsulating data, many different types of sensor models would be required, or the sensor server model would need to have a large number of states for each of the different types of sensor data it might need to support. 
+**Properties allow the same model to be used with a wide range of data types**, which, in the case of models like the sensor server model, is hugely advantageous since any type of sensor data can be handled and interpreted with respect to any context, provided a suitable property has been defined. Without this approach to describing and encapsulating data, many different types of sensor models would be required, or the sensor server model would need to have a large number of states for each of the different types of sensor data it might need to support. 
 
 ### Client and Server Decoupling 
 

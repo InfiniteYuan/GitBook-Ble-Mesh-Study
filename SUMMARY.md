@@ -23,6 +23,7 @@
 * [A Guided Tour of Foundation Models](bluetooth-mesh-models/a-guided-tour-of-foundation-models.md)
 * [A Guided Tour of Generic Models](bluetooth-mesh-models/a-guided-tour-of-generic-models.md)
 * [A Guided Tour of Lighting Models](bluetooth-mesh-models/a-guided-tour-of-lighting-models.md)
+* [A Guided Tour of Sensor, Scene, and Time Models](bluetooth-mesh-models/a-guided-tour-of-sensor-scene-and-time-models.md)
 
 ## Lighting
 

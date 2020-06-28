@@ -36,7 +36,7 @@ An element that implements the sensor server model must also have the sensor set
 
 The complete breakdown of the sensor state is shown in Figure 2.
 
-![Figure 2 - The Sensor State](../.gitbook/assets/the-sensor-state.png)
+![](../.gitbook/assets/the-sensor-state.png)
 
 The sensor data state contains an array of property ID / raw value pairs. The Bluetooth mesh device properties specification defines properties and the characteristics to which they relate. In some cases, a referenced property has a simple value that may be acted upon using sensor model messages, such as sensor get, which return the sensor data state value in a sensor status message. Some properties define arrays of data, suited to creating histograms, and individual columns from within this tabular data can be accessed with messages like sensor column get, which returns a sensor column status message.
 

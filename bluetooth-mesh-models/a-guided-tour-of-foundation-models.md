@@ -8,7 +8,7 @@ description: >-
 
 ## The Configuration Server and Client Models
 
-**All devices need to be configurable.** Implementing the configuration server model is therefore mandatory and provides the device with the ability to be configured, typically using a smartphone application that will implement the configuration client model. 
+**All devices need to be configurable.** Implementing the configuration server model is therefore **mandatory** and provides the device with the ability to be configured, typically using a smartphone application that will implement the configuration client model. 
 
 **The configuration server model contains a significant number of states that allow various aspects of a device to be configured.** The device’s overall composition is held within a state called the Composition Data state. The destination address to use when publishing messages and other parameters relating to periodic message publication; the addresses subscribed to; and which, if any, of the special relay, friend, low power node, and proxy roles a device may play are all part of the configuration model’s data. 
 

@@ -14,6 +14,12 @@ Imagine a smartphone that has established a point-to- point connection to a hear
 
 In contrast, a **mesh network has a many-to-many topology, with each device able to communicate with every other device in the mesh**. Communication is achieved using messages, and devices are able to relay messages to other devices so that the end-to-end communication range is extended far beyond the radio range of each individual node.
 
+> 大多数低功耗蓝牙设备使用简单的点对点网络拓扑相互通信，从而实现一对一的设备通信。在蓝牙核心规范中，这称为“微微网”。
+>
+> 想象一下，一部智能手机已经建立了与心率监测器的点对点连接，并可以通过它传输数据。蓝牙的一个不错的方面是它使设备能够建立多个连接。该智能手机还可以与活动跟踪器建立点对点连接。在这种情况下，智能手机可以与其他每个设备直接通信，而其他设备之间则不能直接通信。
+>
+> 相反，mesh 网络具有多对多拓扑，每个设备都能够与 mesh 网络中的每个其他设备进行通信。设备间使用消息进行通信，并且设备能够将消息中继到其他设备，从而端到端的通信范围扩展到远远超出每个单独节点的无线电覆盖范围。
+
 ## Devices and Nodes
 
 **Devices** which are part of a mesh network are called **nodes** and those which are not are called “**unprovisioned devices**”.
@@ -24,9 +30,19 @@ Provisioning is a secure procedure which results in **an unprovisioned device po
 
 All nodes in a mesh network possess at least one NetKey and it is possession of this key which makes a device a member of the corresponding network and as such, a node. There are other requirements that must be satisfied before a node can become useful, but **securely acquiring a NetKey through the provisioning process is a fundamental first step**. 
 
+> 属于 mesh 网络中的设备称为节点，不属于 mesh 网络中的设备称为“未配置的设备”。
+>
+> 将未配置的设备转换为节点的过程称为**“配置”**。想象一下，购买一个支持 mesh 的新蓝牙灯，将其带回家并进行安装。为了使其成为 mesh 网络的一部分，以便可以通过现有的蓝牙灯光开关和调光器对其进行控制，您需要对其进行配置。
+>
+> 配置是一种安全过程，将让未配置的设备拥有一系列加密密钥，并且对于配置器设备（通常是平板电脑或智能手机）是已知的。这些密钥之一称为网络密钥或 NetKey。
+>
+> mesh 网络中的所有节点都拥有至少一个 NetKey，正是该密钥的拥有使设备成为相应网络的成员，因此成为一个节点。在节点变得可用之前，还必须满足其他要求，但是通过配置过程安全地获取 NetKey 是基本的第一步。
+
 ## Elements
 
 Some nodes have multiple, constituent parts, **each of which can be independently controlled**. In Bluetooth mesh terminology, these parts are called **elements**. For example, an LED lighting product with three LED lights which if added to a Bluetooth mesh network, would form a single node with three elements, one for each of the individual LED lights.
+
+> 一些节点具有多个组成部分，每个部分都可以独立控制。在蓝牙 mesh 网络术语中，这些部分称为元素。例如，具有三个 LED 灯的 LED 照明产品（如果添加到蓝牙 mesh 网络中）将形成具有三个元素的单个节点，每个单独的 LED 灯是一个元素。
 
 ## Messages 
 
@@ -39,6 +55,14 @@ Messages fall within one of two broad categories; **acknowledged or unacknowledg
 The sender of an acknowledged message may resend the message if it does not receive the expected response\(s\) and therefore, acknowledged messages must be idempotent. This means that the effect of a given acknowledged message, arriving at a node multiple times, will be the same as it had only been received once. 
 
 **Unacknowledged messages** do not require a response.
+
+> 当节点需要查询其他节点的状态或需要以某种方式控制其他节点时，它会发送适当类型的消息。如果某个节点需要向其他节点报告其状态，则会发送一条消息。mesh 网络中的所有通信都是“面向消息的”，并且定义了许多消息类型，每种类型都有自己的唯一操作码。
+>
+> 消息属于两大类之一；**确认或未确认**。
+>
+> 确认的消息需要接收它们的节点的响应。响应有两个目的：确认已收到与之相关的消息，并将与消息接收者有关的数据返回给消息发送者。如果确认的消息的发送者未收到预期的响应，则可以重新发送该消息，因此，确认的消息必须是幂等的。这意味着多次收到一个节点的确认消息的效果与只收到一次的效果相同。
+
+> 未确认的消息不需要响应。
 
 ## Addresses 
 
@@ -54,19 +78,41 @@ It is expected that dynamic group addresses will be established by the user via 
 
 Virtual addresses will likely be preconfigured at the point of manufacture and be used for scenarios such as allowing the easy addressing of all meeting room projectors made by this manufacturer.
 
+> 消息必须从一个地址发送到另一个地址。蓝牙网格定义了三种地址类型。
+>
+> **单播地址**唯一地标识单个元素。在配置过程中，将单播地址分配给设备。
+>
+> **组地址**是代表一个或多个元素的多播地址。组地址由蓝牙特殊兴趣组（SIG）定义，被称为 SIG 固定组地址，或者是动态分配的。已经定义了 4 个 SIG 固定组地址。这些被称为“所有代理”，“所有朋友”，“所有中继”和“所有节点”。代理，朋友和中继一词将在本文后面解释。
+>
+> 用户可以通过配置应用程序建立动态组地址，并且动态组地址将反映建筑物的物理配置，例如定义与建筑物中每个房间相对应的组地址。
+>
+> **虚拟地址**是一种可以分配给一个或多个元素的地址，跨越一个或多个节点。它采用128位UUID值的形式，任何元素都可以与之关联，并且很像标签。
+>
+> 虚拟地址可能会在制造时进行预先配置，并用于一些场景，例如允许轻松寻址该制造商生产的所有会议室投影仪。
+
 ## Publish/Subscribe 
 
 The act of sending a message is known as **publishing**. Nodes are configured to select messages sent to specific addresses for processing, and this is known as **subscribing**. 
 
-Typically, messages are addressed to group or virtual addresses. Group and virtual address names will have readily understood meaning to the end user, making them easy and intuitive to use. In Figure 4, above, we can see that the node “Switch 1” is publishing to group address Kitchen. Nodes Light 1, Light 2, and Light 3 each subscribe to the Kitchen address and therefore receive and process messages published to this address. In other words, Light 1, Light 2, and Light 3 can be switched on or off using Switch 1. 
+Typically, messages are addressed to group or virtual addresses. Group and virtual address names will have readily understood meaning to the end user, making them easy and intuitive to use. In Figure 1, above, we can see that the node “Switch 1” is publishing to group address Kitchen. Nodes Light 1, Light 2, and Light 3 each subscribe to the Kitchen address and therefore receive and process messages published to this address. In other words, Light 1, Light 2, and Light 3 can be switched on or off using Switch 1. 
 
-Switch 2 publishes to the group address Dining Room. Light 3 alone subscribed to this address and so is the only light controlled by Switch 2. Note that this example Figure 4 - Publish/Subscribe also illustrates the fact that nodes may subscribe to messages addressed to more than one distinct address. This is both powerful and flexible. 
+Switch 2 publishes to the group address Dining Room. Light 3 alone subscribed to this address and so is the only light controlled by Switch 2. Note that this example Figure 1 - Publish/Subscribe also illustrates the fact that nodes may subscribe to messages addressed to more than one distinct address. This is both powerful and flexible. 
 
 Similarly, notice how both nodes Switch 5 and Switch 6 publish to the same Garden address. 
 
 The use of group and virtual addresses with the publish/ subscribe communication model has an additional, substantial benefit in that removing, replacing or adding new nodes to the network does not require reconfiguration of other nodes. Consider what would be involved in installing an additional light in the dining room. The new device would be added to the network using the provisioning process and configured to subscribe to the Dining Room address. No other nodes would be affected by this change to the network. Switch 2 would continue to publish messages to Dining Room as before but now, both Light 3 and the new light would respond.
 
-![Figure - Publish/Subscribe](../.gitbook/assets/publish_subscribe.png)
+![Figure1 - Publish/Subscribe](../.gitbook/assets/publish_subscribe.png)
+
+> 发送消息的行为称为发布。节点可被配置为接收并处理发送到特定地址的消息，这称为订阅。
+>
+> 通常，消息被寻址到组或虚拟地址。组和虚拟地址名称对于最终用户而言将很容易理解，使它们易于使用和直观。在上面的图1中，我们可以看到节点“ Switch 1”正在发布到组地址 Kitchen。节点 Light 1，Light 2 和 Light 3 各自订阅了 Kitchen 地址，因此接收并处理发布到该地址的消息。换句话说，可以使用开关1打开或关闭灯1，灯2和灯3。
+>
+> 开关2发布到组地址 Dining Room。灯3单独订阅了该地址，因此是开关2唯一控制的灯。请注意，此示例图1-发布/订阅还说明了以下事实：节点可以订阅寻址到多个不同地址的消息。这既强大又灵活。
+>
+> 同样，请注意开关5和开关6这两个节点如何发布到相同的 Garden 地址。
+>
+> 在发布/订阅通信模型中使用组地址和虚拟地址还有一个额外的实质性好处，在网络上删除，替换或添加新节点不需要重新配置其他节点。考虑一下，在餐厅中安装额外的灯会涉及什么。新设备将使用配置过程添加到网络中，并配置为订阅饭厅地址。网络的更改不会影响其他节点。开关2将像以前一样继续向餐厅发布消息，但是现在，灯3和新灯都将响应。
 
 ## States and Properties 
 
@@ -86,6 +132,22 @@ To appreciate the significance and use of contexts as they relate to properties,
 
 **Properties are organized into two categories: Manufacturer, which is a read-only category and Admin which allows read-write access.**
 
+> 元素可以处于各种条件下，这在蓝牙 mesh 中由状态值的概念表示。
+>
+> 状态是元素中包含的某种类型的值（在服务器模型内-参见下文）。除了状态值外，状态还具有相关的行为，在其他情况下可能无法重复使用。
+>
+> 例如，考虑一个可以打开或关闭的简单灯。蓝牙 mesh 定义了一个称为 Generic OnOff 的状态。灯光将具有此状态项，并且“开”的值对应于并导致该灯被照亮，而 Generic OnOff ”的“关闭”状态值则对应于并导致该灯被关闭。
+>
+> 通用一词的含义将在后面讨论。
+>
+> 属性与状态相似，因为它们包含与元素有关的值。但是它们在其他方面与状态有很大不同。
+>
+> 熟悉低功耗蓝牙的读者将意识到这些特性，并回想它们是没有定义行为的数据类型，从而使它们可以在不同的上下文中重用。属性为解释特征提供了上下文。
+>
+> 为了理解与属性相关的上下文的重要性和使用，请考虑以下特征：温度8，这是一种8位温度状态类型，具有多种相关属性，包括当前室内环境温度和当前室外环境温度。这两个属性允许传感器发布传感器读数，接收方客户端将确定温度值所处环境，从而更好地理解其真实含义。
+
+> 属性分为两类：制造商（这是只读类别）和管理（其允许读写访问）。
+
 ## Messages, States and Properties
 
 **Messages are the mechanism by which operations on the mesh are invoked.** Formally, a given message type represents an operation on a state or collection of multiple state values. All messages are of three broad types, reflecting the types of operation which Bluetooth mesh supports. The shorthand for the three types is **GET**, **SET** and **STATUS**. 
@@ -98,15 +160,31 @@ To appreciate the significance and use of contexts as they relate to properties,
 
 **Specific states referenced by messages are inferred from the message opcode. Properties on the other hand, are referenced explicitly in generic property related messages using a 16-bit property ID.** 
 
+> 消息是操作 mesh 网络的机制。形式上，给定的消息类型表示对一个状态或多个状态值集合的操作。所有消息均分为三种类型，反映了蓝牙 mesh 支持的操作类型。这三种类型的简写是 GET，SET 和STATUS。
+>
+> GET 消息从一个或多个节点请求给定状态的值。发送状态消息以响应 GET，并包含相关状态值。
+>
+> SET 消息更改给定状态的值。使用带确认的 SET 消息将需要接收节点返回 STATUS 消息以响应 SET 消息，而使用不需要确认的 SET 消息则不需要响应。
+>
+> STATUS 消息是响应 GET 消息、带确认的 SET 消息而发送的，或者独立于其他消息而发送，例如，可能由元素周期性发送消息。
+>
+> 从消息操作码中推断出消息引用的特定状态。另一方面，在与通用属性相关的消息中使用16位属性ID显式引用属性。
+
 ## State Transitions 
 
 **Changes from one state to another are called state transitions.** Transitions may be instantaneous or execute over a period of time called the transition time. A state transition is likely to have an effect on the application layer behavior of a node. 
+
+> 从一种状态到另一种状态的更改称为状态转换。状态转换可以是瞬时的，也可以在一段时间（称为过渡时间）内执行。状态转换可能会影响节点的应用程序层行为。
 
 ## Bound States 
 
 **Relationships may exist between states whereby a change in one triggers a change in the other.** Such a relationship is called a **state binding**. One state may be bound to multiple other states.
 
 For example, consider a light controlled by a dimmer switch. The light would possess the two states, Generic OnOff and Generic Level with each bound to the other. Reducing the brightness of the light until Generic Level has a value of zero \(fully dimmed\) results in Generic OnOff transitioning from On to Off. 
+
+> 状态之间可能存在关系，一个状态的变化触发另一状态的变化。 这种关系称为状态绑定。一个状态可以绑定到多个其他状态。
+>
+> 例如，考虑由调光开关控制的灯。灯光将具有两个状态，通用开关和通用级别，每个状态相互绑定。 降低灯光的亮度，直到“通用级别”的值为零（完全变暗）会导致“通用开关”从“打开”转换为“关闭”。
 
 ## Models 
 
@@ -122,6 +200,18 @@ A **client model** does not define any states. Instead, it defines the messages 
 
 **Models are immutable**, meaning that they may not be changed by adding or removing behaviors. The correct and only permissible approach to **implementing new model requirements is to extend the existing model**. 
 
+> 模型将前面的概念组合在一起，并定义了与 mesh 网络相关的元素的部分或全部功能。可以识别三类模型。
+>
+> 服务器模型定义了包含该模型的元素可以发送或接收的状态，状态转换，状态绑定和消息的集合。它还定义了与消息，状态和状态转换有关的行为。
+>
+> 客户模型没有定义任何状态。相反，它定义了可以发送或接收的消息，以获取，设置或获取在相应服务器模型中定义的状态的状态。
+>
+> 控制模型既包含允许与其他客户端模型进行通信的服务器模型，也包含允许与服务器模型进行通信的客户端模型。
+>
+> 可以通过扩展其他模型来创建模型。未扩展的模型称为根模型。
+>
+> 模型是不可变的，这意味着不能通过添加或删除行为来更改它们。实施新模型要求的正确且唯一允许的方法是扩展现有模型。
+
 ## Generics 
 
 It is recognized that many different types of device, often have semantically equivalent states, as exemplified by the simple idea of ON vs OFF. Consider lights, fans and power sockets, all of which can be switched on or turned off. 
@@ -134,11 +224,25 @@ Generic states and generic messages are used in generalized models, both generic
 
 Generics allow a wide range of device type to support Bluetooth mesh without the need to create new models. **Remember that models may be created by extending other models** too. As such, generic models may form the basis for quickly creating models for new types of devices.
 
+> 公认的是，许多不同类型的设备通常具有语义上相等的状态，如“开”与“关”。考虑灯，风扇和电源插座，所有这些都可以打开或关闭。
+>
+> 因此，蓝牙 mesh 模型规范定义了一系列可重用的通用状态，例如，通用 OnOff 和通用级别。
+>
+> 类似地，定义了在通用状态下操作的一系列通用消息。 例如，“通用 OnOff 获取消息”和“通用级别设置消息”。
+>
+> 通用状态和通用消息用于通用模型，通用服务器模型（例如 Generic OnOff Server）和通用客户端模型（例如 Generic Level Client）都适用。
+>
+> 通用模型允许广泛的设备类型支持蓝牙 mesh，而无需创建新模型。请记住，也可以通过扩展其他模型来创建模型。 这样，通用模型可以作为快速创建新模型的基础。
+
 ## Scenes 
 
 **A scene is a stored collection of states which may be recalled and made current by the receipt of a special type of message or at a specified time. Scenes are identified by a 16-bit Scene Number**, which is unique within the mesh network. Scenes allow a series of nodes to be set to a given set of previously stored, complimentary states in one coordinated action.
 
 Imagine that in the evening, you like the temperature in your main family room to be 20 degrees Celsius, the six LED downlights to be at a certain brightness level and the lamp in the corner of the room on the table, set to a nice warm yellow hue. Having manually set the various nodes in this example scenario to these states, you can store them as a scene using a configuration application, and recall the scene later on, either on demand by sending an appropriate, scene-related mesh message or automatically at a scheduled time. 
+
+> 场景是状态的存储集合，可以通过接收特殊类型的消息或在指定时间将其调回并使其成为最新状态。场景由16位场景编号标识，该编号在网状网络中是唯一的。场景允许在一个协调的动作中将一系列节点设置为一组给定的先前存储的互补状态。
+>
+> 想象一下，在晚上，您希望您的主要家庭房间的温度为 20 摄氏度，六个 LED 筒灯处于一定的亮度水平，桌子上的房间角落的灯被设置为暖黄色。在此示例场景中将各个节点手动设置为这些状态后，您可以使用配置应用程序将它们存储为场景，之后可以通过发送与场景相关的 mesh 消息调用场景，或者在设置的时间点调用场景。
 
 ## Provisioning 
 

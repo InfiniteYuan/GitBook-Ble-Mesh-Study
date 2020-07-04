@@ -252,23 +252,39 @@ Provisioning is accomplished using an application on a device such as a tablet. 
 
 The provisioning process progresses through five steps and these are described next. 
 
+> 配置是设备加入网状网络并成为节点的过程。它涉及多个阶段，将生成各种安全密钥，它本身就是一个安全的过程。 
+>
+> 使用平板电脑之类的设备上的应用程序即可完成配置。 以这种身份，用于启动配置过程的设备称为配置器。
+>
+> 设置过程分为五个步骤，下面将介绍这些步骤。
+
 ### **Step 1. Beaconing** 
 
 In support of various different Bluetooth mesh features, including but not limited to provisioning, new GAP AD types \(ref: Bluetooth Core Specification Supplement\) have been introduced, including the &lt;Mesh Beacon&gt; AD type. 
 
 **An unprovisioned device indicates its availability to be provisioned by using the &lt;Mesh Beacon&gt; AD type in advertising packets.** The user might need to start a new device advertising in this way by, for example, pressing a combination of buttons or holding down a button for a certain length of time. 
 
+> 为了支持各种不同的蓝牙 mesh 功能，包括但不限于配置，引入了新的GAP 广播类型（参考：蓝牙核心规范补充），包括 &lt;Mesh Beacon&gt; 广播类型。
+>
+> 未配置的设备将通过在广播数据包中使用 &lt;Mesh Beacon&gt; 广播类型来表示该设备可以被配置。用户可能需要以一种方式开始新的设备广播，例如，通过按下按钮的组合或按住按钮一定时间。
+
 ### **Step 2. Invitation** 
 
 **In this step, the Provisioner sends an invitation to the device to be provisioned, in the form of a Provisioning Invite PDU.** The Beaconing device responds with information about itself in a Provisioning Capabilities PDU. 
+
+> 在此步骤中，配置器以配置邀请 PDU 的形式向未配置设备发送邀请。未配置设备使用配置功能 PDU 中有关其自身的信息进行响应。
 
 ### **Step 3. Exchanging Public Keys** 
 
 **The Provisioner and the device to be provisioned, exchange their public keys, which may be static or ephemeral, either directly or using an out-of-band \(OOB\) method.** 
 
+> 配置器和未配置设备直接或使用带外（OOB）方法交换其公共密钥，这些公共密钥可以是静态的或临时的。
+
 ### **Step 4. Authentication** 
 
 **During the authentication step, the device to be provisioned outputs a random, single or multi-digit number to the user in some form, using an action appropriate to its capabilities.** For example, it might flash an LED several times. The user enters the digit\(s\) output by the new device into the Provisioner and a cryptographic exchange takes place between the two devices, involving the random number, to complete the authentication of each of the two devices to the other. 
+
+> 在认证步骤中，未配置设备使用适合其功能的操作以某种形式向用户输出随机、一位或多位数字。例如，它可能使 LED 闪烁几次。用户将新设备输出的数字输入到配置器中，并且在这两个设备之间进行加密交换（涉及随机数），以完成两个设备彼此之间的认证。
 
 ### **Step 5. Distribution of the Provisioning Data**
 
@@ -276,15 +292,25 @@ In support of various different Bluetooth mesh features, including but not limit
 
 After provisioning has completed, the provisioned device possesses the network’s **NetKey**, a mesh security parameter known as the **IV Index** and **a Unicast Address**, allocated by the Provisioner. It is now known as a node.
 
+> 身份验证成功完成后，两个设备中的每一个都将从其私钥和交换的对等公钥派生会话密钥。然后，使用会话密钥来保护完成配置过程所需的数据分发，其中包括网络密钥（NetKey）。
+>
+> 配置完成后，未配置设备就可以称为节点。它将拥有网络的 NetKey，由配置器分配的网状安全参数（称为 IV 索引）和单播地址。
+
 ## Features 
 
 All nodes can transmit and receive mesh messages but there are a number of optional features which a node may possess, giving it additional, special capabilities. There are four such optional features: the **Relay**, **Proxy**, **Friend**, and the **Low Power** features. A node may support zero or more of these optional features and any supported feature may, at a point in time, be enabled or disabled. 
+
+> 所有节点都可以发送和接收网格消息，但是节点可能具有许多可选功能，从而为其提供了额外的特殊功能。有四个可选功能：中继，代理，好友和低功耗功能。节点可以支持零个或多个这些可选功能，并且在某个时间点可以启用或禁用任何受支持的功能。
 
 ### Relay Nodes 
 
 Nodes which support the Relay feature, known as **Relay nodes**, are able to **retransmit** received messages. **Relaying is the mechanism by which a message can traverse the entire mesh network, making multiple “hops” between devices by being relayed.** 
 
 Mesh network PDUs include a field called **TTL** \(Time To Live\). It takes an integer value and is **used to limit the number of hops** a message will make across the network. Setting TTL to 3, for example, will result in the message being relayed, a maximum number of three hops away from the originating node. Setting it to 0 will result in it not being relayed at all and only traveling a single hop. Armed with some basic knowledge of the topology and membership of the mesh, nodes can use the TTL field to make more efficient use of the mesh network. 
+
+> 支持中继功能的节点（称为中继节点）能够重新传输收到的消息。中继是一种机制，消息可以通过该机制遍历整个 mesh 网络，并通过中继在设备之间进行多次“跳跃”。
+>
+> mesh 网络 PDU 包含一个称为 TTL（生存时间）的字段。它取一个整数值，用于限制消息在网络上的跳数。例如，将 TTL 设置为 3，将导致消息被中继，离原始节点的最大跳数为 3。 将其设置为 0  将导致它不被中继，而仅传播单个跃点。 有了 mesh 拓扑结构和成员的一些基本知识，节点即可使用 TTL 字段来更有效地利用 mesh 网络。
 
 ### Low Power Nodes and Friend Nodes 
 
@@ -302,6 +328,20 @@ The answer to this apparent conundrum is the **Friend node** and the concept of 
 
 The relationship between the LPN and the Friend node is known as **friendship**. Friendship is key to allowing very power constrained nodes which need to receive messages, to function in a Bluetooth mesh network whilst continuing to operate in a power-efficient way. 
 
+> 某些类型的节点的电源有限，需要尽可能节约能源。此外，这种类型的设备可能主要与发送消息有关，仍然需要偶尔接收消息。
+>
+> 考虑一下，一个由小型纽扣电池供电的温度传感器。只要温度高于或低于配置的上限和下限阈值，它就会每分钟发送一次温度读数。如果温度保持在这些阈值之内，则不会发送任何消息。这些行为很容易实现，而不会出现与功耗有关的特定问题。
+>
+> 但是，用户也可以将更改温度阈值状态值的消息发送到传感器。这是一个相对罕见的事件，但传感器必须支持它。接收消息的需求会影响占空比和功耗。100％的占空比将确保传感器不会错过任何温度阈值配置消息，但会消耗大量功率。低占空比将节省能量，但有可能会丢失传感器的配置消息。
+>
+> 这个明显难题的答案是“好友”节点和友谊的概念。
+>
+> 在示例中，如温度传感器之类的节点可能被指定为低功耗节点（LPN），并且传感器配置数据中的功能标记将这样指定该节点。
+>
+> LPN 与另一个不受功率限制的节点（例如，它具有永久性交流电源）协同工作。该设备称为“好友”节点。好友节点存储发往 LPN 的消息，并在 LPN 轮询 Friend 节点以获取“等待消息”时将其传递给 LPN。LPN 可以不频繁地轮询 Friend，以便它可以在节省功率的需求与需要接收和处理配置消息的及时性之间取得平衡。当它进行轮询时，由 Friend 存储的所有消息都被依次转发到 LPN，带有称为 MD（更多数据）的标志，该标志向 LPN 指示是否还有更多消息要从 Friend 节点发送。
+>
+> LPN和“好友”节点之间的关系称为友谊。友谊是使需要接收消息的功率受限制的节点能够在蓝牙 mesh 网络中运行，同时继续以节能方式运行的关键。
+
 ### Proxy Nodes 
 
 There are an enormous number of devices in the world that support Bluetooth LE, most smartphones and tablets being amongst them. In-market Bluetooth devices, at the time Bluetooth mesh was adopted, do not possess a Bluetooth mesh networking stack. **They do possess a Bluetooth LE stack however and therefore have the ability to connect to other devices and interact with them using GATT, the Generic Attribute Profile.** 
@@ -310,6 +350,12 @@ There are an enormous number of devices in the world that support Bluetooth LE, 
 
 In summary, **Proxy nodes allow Bluetooth LE devices that do not possess a Bluetooth mesh stack to interact with nodes in a mesh network.** 
 
+> 世界上有大量支持低功耗蓝牙的设备，其中大多数是智能手机和平板电脑。在采用蓝牙 mesh 时，市场上的蓝牙设备不具备蓝牙 mesh 网络协议栈。但是，它们确实具有低功耗蓝牙网络协议栈，因此具有使用 GATT（通用属性配置文件）连接到其他设备并与之交互的能力。
+>
+> 代理节点公开了一个 GATT 接口，低功耗设备可以使用该接口与 mesh 网络进行交互。定义了一种协议（称为代理协议），旨在与面向连接的承载层一起使用，例如 GATT。GATT 设备从代理节点实现的 GATT 特性中读取和写入代理协议 PDU。代理节点将这些 PDU 转换为 mesh PDU或从 mesh PDU转 换。
+>
+> 总之，代理节点允许不具有蓝牙 mesh 网络协议栈的低功耗蓝牙设备与蓝牙 mesh 中的节点进行交互。
+
 ## Node Configuration 
 
 **Each node supports a standard set of configuration states which are implemented within the standard Configuration Server Model and accessed using the Configuration Client Model.** Configuration State data is concerned with the node’s capabilities and behavior within the mesh, independently of any specific application or device type behaviors. 
@@ -317,4 +363,10 @@ In summary, **Proxy nodes allow Bluetooth LE devices that do not possess a Bluet
 For example, the features supported by a node, whether it is a Proxy node, a Relay node and so on, are indicated by Configuration Server states. The addresses to which a node has subscribed are stored in the Subscription List. The network and subnet keys indicating the networks the node is a member of are listed in the configuration block, as are the application keys held by the mode. 
 
 **A series of configuration messages allow the Configuration Client Model and Configuration Server Model to support GET, SET and STATUS operations on the Configuration Server Model states.**
+
+> 每个节点都支持一组标准的配置状态，这些状态在标准 Configuration Server 模型内实现，并可以使用 Configuration Client Model 访问。配置状态数据与网格中节点的功能和行为有关，而与任何特定的应用程序或设备类型行为无关。
+>
+> 例如，节点的支持功能（无论是代理节点还是中继节点等）均由配置服务器状态指示。节点已订阅的地址存储在“订阅列表”中。在配置块中列出了节点所属的网络的网络和子网密钥，以及该模式保留的应用程序密钥。
+>
+> 一系列配置消息允许配置客户端模型和配置服务器模型在配置服务器模型状态上支持 GET，SET 和 STATUS 操作。
 

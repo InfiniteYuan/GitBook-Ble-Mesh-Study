@@ -57,6 +57,15 @@ All nodes in a BLE mesh can transmit and receive messages but some nodes may hav
 * **Friend node** – Works alongside a low power node by storing and forwarding messages intended for a low power node when polled by the low power node 
 * **Proxy node** – Devices without a mesh stack can interact with devices in a BLE mesh using a GATT bearer to a proxy node.
 
+> BLE mesh 中的所有节点都可以发送和接收消息，但是某些节点可能具有一个或多个特定功能。
+>
+> * **中继节点** - 可以接收和重新广播（中继）消息
+> * **低功耗节点** - 大部分时间都处于低功耗状态并且射频处于关闭状态
+> * **友好节点 -** 通过在低功耗​​节点轮询时存储和转发发往低功耗节点的消息，与低功耗节点一起工作
+> * **代理节点 -** 没有网格堆栈的设备可以使用代理节点的 GATT 承载与 BLE mesh 中的设备进行交互。
+
+
+
 ![](.gitbook/assets/specification_node_feature.png)
 
 ## Publish/Subscribe

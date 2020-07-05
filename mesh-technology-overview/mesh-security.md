@@ -63,7 +63,7 @@ To deal with this potential conflict of interest, the **mesh uses different secu
 > 要了解这一点并理解其重要性，请考虑可以充当中继器的 mesh 灯。以中继的身份，它可能会发现自己正在处理与建筑物的蓝牙 mesh 门窗安全系统有关的消息。灯没有业务能够访问和处理此类消息的详细信息，但确实需要将它们的消息中继到其他节点。
 >
 > 为了处理这种潜在的利益冲突，mesh 使用不同的安全密钥来保护网络层上的消息，这些不同的密钥用于保护与特定应用（例如照明，物理安全，加热等）有关的消息。
-
+>
 > mesh 网络中的所有节点都拥有网络密钥（NetKey）。确实，拥有此共享密钥才使节点成为网络的成员。网络加密密钥和隐私密钥直接从 NetKey 派生。
 >
 > 拥有 NetKey 可以使节点解密消息并认证到网络层，从而可以执行诸如中继之类的网络功能。它不允许对应用程序数据进行解密。
@@ -89,7 +89,7 @@ The Key Refresh Procedure results in all nodes in the network, except for those 
 As such, the node which was removed from the network and which contains an old NetKey and an old set of AppKeys, is no longer a member of the network and poses no threat. 
 
 > 如上所述，节点包含各种 mesh 安全密钥。如果某个节点出现故障并需要处理，或者所有者决定将该节点出售给另一个所有者，那么重要的是，不能使用该设备及其包含的密钥来对该节点原来的 mesh 网络进行攻击。
-
+>
 > 定义了从网络中删除节点的过程。配置器应用程序用于将节点添加到黑名单，然后启动“密钥刷新过程”过程。
 >
 > 密钥刷新过程将导致网络中的所有节点，但黑名单中的节点除外，这些节点将被发布新的网络密钥，应用程序密钥以及所有相关的派生数据。换句话说，将更新构成网络和应用程序安全性基础的整个安全密钥集。
@@ -111,6 +111,6 @@ In network security, a replay attack is a technique whereby an eavesdropper inte
 **Bluetooth mesh has protection against replay attacks. The basis for this protection is the use of two network PDU fields** called the **Sequence Number** \(SEQ\) and **IV Index**, respectively. Elements increment the SEQ value every time they publish a message. A node, receiving a message from an element which contains a SEQ value less than or equal to that which was in the last valid message, will discard it, since it is likely that it relates to a replay attack. IV Index is a separate field, considered alongside SEQ. **IV Index values within messages from a given element must always be equal to or greater than the last valid message from that element.**
 
 > 在网络安全中，重放攻击是一种技术，窃听者拦截并捕获一条或多条消息，然后简单地重新传输它们，目的是欺骗接收者，以执行未经授权的设备攻击。通常被引用的一个例子是，汽车的无钥匙进入系统受到攻击者的攻击，拦截了汽车所有者与汽车之间的身份验证序列，然后重放这些消息以进入汽车并窃取它。
-
+>
 > 蓝牙 mesh 网络具有防止重放攻击的保护。这种保护的基础是使用两个网络 PDU 字段，分别称为序列号（SEQ）和 IV 索引。元素每次发布消息时都会递增 SEQ 值。从某个节点接收到的消息中的 SEQ 值小于或等于最后一个有效消息中的 SEQ 值的节点，将丢弃它，因为它可能与重放攻击有关。IV 索引是一个单独的字段，与 SEQ 一起考虑。给定元素的消息中的 IV 索引值必须始终等于或大于该元素的最后一条有效消息。
 

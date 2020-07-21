@@ -30,13 +30,13 @@ Provisioning is a secure procedure which results in **an unprovisioned device po
 
 All nodes in a mesh network possess at least one NetKey and it is possession of this key which makes a device a member of the corresponding network and as such, a node. There are other requirements that must be satisfied before a node can become useful, but **securely acquiring a NetKey through the provisioning process is a fundamental first step**. 
 
-> 属于 mesh 网络中的设备称为节点，不属于 mesh 网络中的设备称为“未配置的设备”。
+> 属于 mesh 网络中的设备称为节点，不属于 mesh 网络中的设备称为“未配置设备”。
 >
-> 将未配置的设备转换为节点的过程称为**“配置”**。想象一下，购买一个支持 mesh 的新蓝牙灯，将其带回家并进行安装。为了使其成为 mesh 网络的一部分，以便可以通过现有的蓝牙灯光开关和调光器对其进行控制，您需要对其进行配置。
+> 将未配网的设备转换为节点的过程称为**“配网”**。想象一下，购买一个支持 mesh 的新蓝牙灯，将其带回家并进行安装。为了使其成为 mesh 网络的一部分，以便可以通过现有的蓝牙灯光开关和调光器对其进行控制，您需要对其进行配置。
 >
-> 配置是一种安全过程，将让未配置的设备拥有一系列加密密钥，并且对于配置器设备（通常是平板电脑或智能手机）是已知的。这些密钥之一称为网络密钥或 NetKey。
+> 配网是一种安全过程，将让未配置设备拥有一系列加密密钥，并且对于配网器设备（通常是平板电脑或智能手机）是已知的。这些密钥之一称为网络密钥或 NetKey。
 >
-> mesh 网络中的所有节点都拥有至少一个 NetKey，正是该密钥的拥有使设备成为相应网络的成员，因此成为一个节点。在节点变得可用之前，还必须满足其他要求，但是通过配置过程安全地获取 NetKey 是基本的第一步。
+> mesh 网络中的所有节点都拥有至少一个 NetKey，正是该密钥的拥有使设备成为相应网络的成员，因此成为一个节点。在节点变得可用之前，还必须满足其他要求，但是通过配网过程安全地获取 NetKey 是基本的第一步。
 
 ## Elements
 
@@ -254,11 +254,11 @@ Provisioning is accomplished using an application on a device such as a tablet. 
 
 The provisioning process progresses through five steps and these are described next. 
 
-> 配置是设备加入网状网络并成为节点的过程。它涉及多个阶段，将生成各种安全密钥，它本身就是一个安全的过程。 
+> 配网是设备加入 mesh 网络并成为节点的过程。它涉及多个阶段，将生成各种安全密钥，它本身就是一个安全的过程。 
 >
-> 使用平板电脑之类的设备上的应用程序即可完成配置。 以这种身份，用于启动配置过程的设备称为配置器。
+> 使用平板电脑之类的设备上的应用程序即可完成配置。 以这种身份，用于启动配置过程的设备称为配网器。
 >
-> 设置过程分为五个步骤，下面将介绍这些步骤。
+> 配网过程分为五个步骤，下面将介绍这些步骤。
 
 ### **Step 1. Beaconing** 
 
@@ -268,25 +268,25 @@ In support of various different Bluetooth mesh features, including but not limit
 
 > 为了支持各种不同的蓝牙 mesh 功能，包括但不限于配置，引入了新的GAP 广播类型（参考：蓝牙核心规范补充），包括 &lt;Mesh Beacon&gt; 广播类型。
 >
-> 未配置的设备将通过在广播数据包中使用 &lt;Mesh Beacon&gt; 广播类型来表示该设备可以被配置。用户可能需要以一种方式开始新的设备广播，例如，通过按下按钮的组合或按住按钮一定时间。
+> 未配置设备将通过在广播数据包中使用 &lt;Mesh Beacon&gt; 广播类型来表示该设备可以被配置。用户可能需要以一种方式开始新的设备广播，例如，通过按下按钮的组合或按住按钮一定时间。
 
 ### **Step 2. Invitation** 
 
 **In this step, the Provisioner sends an invitation to the device to be provisioned, in the form of a Provisioning Invite PDU.** The Beaconing device responds with information about itself in a Provisioning Capabilities PDU. 
 
-> 在此步骤中，配置器以配置邀请 PDU 的形式向未配置设备发送邀请。未配置设备使用配置功能 PDU 中有关其自身的信息进行响应。
+> 在此步骤中，配网器以配置邀请 PDU 的形式向未配置设备发送邀请。未配置设备使用配置功能 PDU 中有关其自身的信息进行响应。
 
 ### **Step 3. Exchanging Public Keys** 
 
 **The Provisioner and the device to be provisioned, exchange their public keys, which may be static or ephemeral, either directly or using an out-of-band \(OOB\) method.** 
 
-> 配置器和未配置设备直接或使用带外（OOB）方法交换其公共密钥，这些公共密钥可以是静态的或临时的。
+> 配网器和未配置设备直接或使用带外（OOB）方法交换其公共密钥，这些公共密钥可以是静态的或临时的。
 
 ### **Step 4. Authentication** 
 
 **During the authentication step, the device to be provisioned outputs a random, single or multi-digit number to the user in some form, using an action appropriate to its capabilities.** For example, it might flash an LED several times. The user enters the digit\(s\) output by the new device into the Provisioner and a cryptographic exchange takes place between the two devices, involving the random number, to complete the authentication of each of the two devices to the other. 
 
-> 在认证步骤中，未配置设备使用适合其功能的操作以某种形式向用户输出随机、一位或多位数字。例如，它可能使 LED 闪烁几次。用户将新设备输出的数字输入到配置器中，并且在这两个设备之间进行加密交换（涉及随机数），以完成两个设备彼此之间的认证。
+> 在认证步骤中，未配置设备使用适合其功能的操作以某种形式向用户输出随机、一位或多位数字。例如，它可能使 LED 闪烁几次。用户将新设备输出的数字输入到配网器中，并且在这两个设备之间进行加密交换（涉及随机数），以完成两个设备彼此之间的认证。
 
 ### **Step 5. Distribution of the Provisioning Data**
 
@@ -296,13 +296,13 @@ After provisioning has completed, the provisioned device possesses the network�
 
 > 身份验证成功完成后，两个设备中的每一个都将从其私钥和交换的对等公钥派生会话密钥。然后，使用会话密钥来保护完成配置过程所需的数据分发，其中包括网络密钥（NetKey）。
 >
-> 配置完成后，未配置设备就可以称为节点。它将拥有网络的 NetKey，由配置器分配的网状安全参数（称为 IV 索引）和单播地址。
+> 配置完成后，未配置设备就可以称为节点。它将拥有网络的 NetKey，由配网器分配的 mesh 安全参数（称为 IV 索引）和单播地址。
 
 ## Features 
 
 All nodes can transmit and receive mesh messages but there are a number of optional features which a node may possess, giving it additional, special capabilities. There are four such optional features: the **Relay**, **Proxy**, **Friend**, and the **Low Power** features. A node may support zero or more of these optional features and any supported feature may, at a point in time, be enabled or disabled. 
 
-> 所有节点都可以发送和接收网格消息，但是节点可能具有许多可选功能，从而为其提供了额外的特殊功能。有四个可选功能：中继，代理，好友和低功耗功能。节点可以支持零个或多个这些可选功能，并且在某个时间点可以启用或禁用任何受支持的功能。
+> 所有节点都可以发送和接收 mesh 消息，但是节点可能具有许多可选功能，从而为其提供了额外的特殊功能。有四个可选功能：中继，代理，好友和低功耗功能。节点可以支持零个或多个这些可选功能，并且在某个时间点可以启用或禁用任何受支持的功能。
 
 ### Relay Nodes 
 

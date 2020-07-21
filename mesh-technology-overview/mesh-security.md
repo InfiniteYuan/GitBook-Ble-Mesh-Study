@@ -33,7 +33,7 @@ The following fundamental security statements apply to all Bluetooth mesh networ
 > 3. 可以在 mesh 网络的生存期内通过“密钥刷新”过程来更改安全密钥。
 > 4. 消息混淆使跟踪网络内发送的消息变得困难，从而提供了一种隐私机制，使跟踪节点变得困难。
 > 5. mesh 安全保护网络免受重放攻击。
-> 6. 将设备添加到网状网络以成为节点的过程（配置）本身就是安全的过程。
+> 6. 将设备添加到 mesh 网络以成为节点的过程（配网）本身就是安全的过程。
 > 7. 可以通过防止垃圾桶攻击的方式将节点安全地从网络中删除。
 
 ## Separation of Concerns and Mesh Security Keys
@@ -76,7 +76,7 @@ To deal with this potential conflict of interest, the **mesh uses different secu
 >
 > AppKey 仅与一个 NetKey 相关联。这种关联称为“密钥绑定”，表示通过拥有给定 AppKey 定义的特定应用程序只能在一个特定网络上工作，而一个网络可以托管多个独立安全的网络应用程序。
 >
-> 最终的密钥类型是设备密钥（DevKey）。这是一种特殊的应用程序密钥。每个节点都有一个配置器已知的唯一DevKey，其他节点则没有。DevKey 在配置过程中用于保护配置器和节点之间的通信安全。
+> 最终的密钥类型是设备密钥（DevKey）。这是一种特殊的应用程序密钥。每个节点都有一个配网器已知的唯一DevKey，其他节点则没有。DevKey 在配网过程中用于保护配网器和节点之间的通信安全。
 
 ## Node Removal, Key Refresh and Trashcan Attacks 
 
@@ -90,7 +90,7 @@ As such, the node which was removed from the network and which contains an old N
 
 > 如上所述，节点包含各种 mesh 安全密钥。如果某个节点出现故障并需要处理，或者所有者决定将该节点出售给另一个所有者，那么重要的是，不能使用该设备及其包含的密钥来对该节点原来的 mesh 网络进行攻击。
 >
-> 定义了从网络中删除节点的过程。配置器应用程序用于将节点添加到黑名单，然后启动“密钥刷新过程”过程。
+> 定义了从网络中删除节点的过程。配网器应用程序用于将节点添加到黑名单，然后启动“密钥刷新过程”过程。
 >
 > 密钥刷新过程将导致网络中的所有节点，但黑名单中的节点除外，这些节点将被发布新的网络密钥，应用程序密钥以及所有相关的派生数据。换句话说，将更新构成网络和应用程序安全性基础的整个安全密钥集。
 >

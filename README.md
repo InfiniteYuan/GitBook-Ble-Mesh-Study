@@ -62,7 +62,7 @@ All nodes in a BLE mesh can transmit and receive messages but some nodes may hav
 > * **中继节点** - 可以接收和重新广播（中继）消息
 > * **低功耗节点** - 大部分时间都处于低功耗状态并且射频处于关闭状态
 > * **友好节点 -** 通过在低功耗​​节点轮询时存储和转发发往低功耗节点的消息，与低功耗节点一起工作
-> * **代理节点 -** 没有网格堆栈的设备可以使用代理节点的 GATT 承载与 BLE mesh 中的设备进行交互。
+> * **代理节点 -** 没有 mesh 协议栈的设备可以使用代理节点的 GATT 承载与 BLE mesh 中的设备进行交互。
 
 
 

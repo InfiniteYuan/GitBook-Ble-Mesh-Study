@@ -24,7 +24,7 @@ Wireless communications systems based around mesh network topologies have proved
 
 The addition of mesh networking support represents a change of a type, and of such magnitude that it warrants being described as a paradigm shift for Bluetooth technology.
 
-> 网状\(mesh\)网络支持的增加代表了一种类型的变化，并且这种变化的程度足以保证将其描述为蓝牙技术的范式转变。
+> mesh 网络的支持代表了一种类型的变化，并且这种变化的程度足以保证将其描述为蓝牙技术的范式转变。
 
 ## Overview
 

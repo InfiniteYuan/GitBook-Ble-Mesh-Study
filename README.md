@@ -34,7 +34,7 @@ A BLE mesh is a collection of up to **32,767 physical BLE devices** which send a
 
 BLE mesh is a managed flood network which broadcasts \(BLE advertisement\) a message to other nodes that are in range. The receiving nodes re-broadcast \(or relay\) the message to other nodes that are also in range. This continues until the message time to live \(TTL\) expires; once expired, nodes that receive the message no longer re-broadcast it. If a node receives a message that it previously received, it can immediately discard it by matching it against entries in the message cache.
 
-> BLE mesh 是一个受管理的洪水网络，它向范围内的其他节点广播（BLE 广播）消息。接收节点将消息重新广播（或中继）到范围内的其他节点。这一直持续到消息生存时间（TTL）到期为止。一旦过期，接收到该消息的节点将不再重新广播它。如果节点接收到它先前收到的消息，则可以通过将其与消息缓存中的条目进行匹配来立即将其丢弃。
+> BLE mesh 是一个受管理的泛洪网络，它向范围内的其他节点广播（BLE 广播）消息。接收节点将消息重新广播（或中继）到范围内的其他节点。这一直持续到消息生存时间（TTL）到期为止。一旦过期，接收到该消息的节点将不再重新广播它。如果节点接收到它先前收到的消息，则可以通过将其与消息缓存中的条目进行匹配来立即将其丢弃。
 
 BLE mesh networks use relay nodes rather than nodes that function as routers. Routers can be a single point of failure that can then result in a full network failure. By not relying on routers, these mesh networks that use flooding are far more reliable. BLE mesh messages can be received from any node within range, even if an intermediary node fails or is removed from the network.
 

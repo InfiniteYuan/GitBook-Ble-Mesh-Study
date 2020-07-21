@@ -28,7 +28,7 @@ The following fundamental security statements apply to all Bluetooth mesh networ
 
 > 以下基本安全声明适用于所有蓝牙 mesh 网络： 
 >
-> 1. 所有网格消息均已加密和认证。 
+> 1. 所有 mesh 消息均已加密和认证。 
 > 2. 网络安全性，应用程序安全性和设备安全性是独立解决的。
 > 3. 可以在 mesh 网络的生存期内通过“密钥刷新”过程来更改安全密钥。
 > 4. 消息混淆使跟踪网络内发送的消息变得困难，从而提供了一种隐私机制，使跟踪节点变得困难。

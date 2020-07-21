@@ -14,7 +14,7 @@ At the bottom of the mesh architecture stack, we have a layer entitled Bluetooth
 
 We’ll now review each layer of the mesh architecture, working our way up from the bottom layer.
 
-> 在网格体系结构栈的底部，我们有一个名为低功耗蓝牙的层。实际上，这不仅仅是 mesh 架构的单层，而是完整的低功耗蓝牙协议栈，它是提供基本无线通信功能所必需的，而基础层上的 mesh 架构则可以利用这些功能。应该清楚的是，mesh 系统取决于低功耗蓝牙协议栈栈的可用性。
+> 在 mesh 体系结构栈的底部，我们有一个名为低功耗蓝牙的层。实际上，这不仅仅是 mesh 架构的单层，而是完整的低功耗蓝牙协议栈，它是提供基本无线通信功能所必需的，而基础层上的 mesh 架构则可以利用这些功能。应该清楚的是，mesh 系统取决于低功耗蓝牙协议栈栈的可用性。
 >
 > 现在，我们将从底层开始逐层查看 mesh 架构的每一层。
 

@@ -80,7 +80,7 @@ It is expected that dynamic group addresses will be established by the user via 
 
 Virtual addresses will likely be preconfigured at the point of manufacture and be used for scenarios such as allowing the easy addressing of all meeting room projectors made by this manufacturer.
 
-> 消息必须从一个地址发送到另一个地址。蓝牙网格定义了三种地址类型。
+> 消息必须从一个地址发送到另一个地址。蓝牙 mesh 定义了三种地址类型。
 >
 > **单播地址**唯一地标识单个元素。在配置过程中，将单播地址分配给设备。
 >
@@ -366,7 +366,7 @@ For example, the features supported by a node, whether it is a Proxy node, a Rel
 
 **A series of configuration messages allow the Configuration Client Model and Configuration Server Model to support GET, SET and STATUS operations on the Configuration Server Model states.**
 
-> 每个节点都支持一组标准的配置状态，这些状态在标准 Configuration Server 模型内实现，并可以使用 Configuration Client Model 访问。配置状态数据与网格中节点的功能和行为有关，而与任何特定的应用程序或设备类型行为无关。
+> 每个节点都支持一组标准的配置状态，这些状态在标准 Configuration Server 模型内实现，并可以使用 Configuration Client Model 访问。配置状态数据与 mesh 网络中节点的功能和行为有关，而与任何特定的应用程序或设备类型行为无关。
 >
 > 例如，节点的支持功能（无论是代理节点还是中继节点等）均由配置服务器状态指示。节点已订阅的地址存储在“订阅列表”中。在配置块中列出了节点所属的网络的网络和子网密钥，以及该模式保留的应用程序密钥。
 >

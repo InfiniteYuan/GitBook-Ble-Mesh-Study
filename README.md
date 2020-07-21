@@ -46,7 +46,7 @@ Heartbeat messages are sent periodically to indicate a node is still alive and h
 
 BLE mesh does not make use of connections but rather uses the BLE broadcasts \(advertisements\) introduced with BT4.0. This does not mean that all BT4.0 devices automatically support mesh \(the OS likely needs to expose a new API\) but devices that are BT4.0 devices and newer have the potential to support BLE mesh.
 
-> BLE mesh 不使用连接，而是使用 BT4.0 引入的 BLE 广播。这并不意味着所有 BT4.0 设备都自动支持网格（操作系统可能需要公开新的 API），但是 BT4.0 设备及更高版本的设备有可能支持 BLE mesh。
+> BLE mesh 不使用连接，而是使用 BT4.0 引入的 BLE 广播。这并不意味着所有 BT4.0 设备都自动支持 mesh（操作系统可能需要公开新的 API），但是 BT4.0 设备及更高版本的设备有可能支持 BLE mesh。
 
 ## Topology
 
@@ -76,7 +76,7 @@ All nodes in a BLE mesh can transmit and receive messages but some nodes may hav
 
 **Each message consists of an opcode and context data.** The opcode dictates the behavior at the receive end; the data can be **up to 380 octets**. By the time the application receives a mesh message, it is completely decrypted and given to the app as a plaintext message.
 
-> **每个消息都包含一个操作码和上下文数据**。操作码指示接收端的行为；数据**最多可以包含 380 个八位位组**。 在应用程序收到网格消息时，它已被完全解密并作为纯文本消息提供给应用程序。
+> **每个消息都包含一个操作码和上下文数据**。操作码指示接收端的行为；数据**最多可以包含 380 个八位位组**。 在应用程序收到 mesh 消息时，它已被完全解密并作为纯文本消息提供给应用程序。
 
 ## Provisioning
 
@@ -106,5 +106,5 @@ The term group address is simply an address value in the **range 0xC000 to 0xFEF
 
 **By the time the messages are on the air, they have been encrypted twice.** Once with an application key and the second time with a network key. **Each key is 128-bit long and the encryption algorithm uses AES in CCM mode.** Because it does not have any knowledge of the keys, an outgoing message at the application layer is not encrypted. In addition, an application does not know or care about its own node address. When an application sends the message, the destination address is added and the encryption is performed by the underlying mesh stack. Critical information such as node address, app keys, net keys, publication address, subscription list, key bindings, and other configuration information is wholly managed by the smartBASIC firmware. This information is only available after a provisioner provisions the device into a network.
 
-> **到消息广播时，它们已被加密两次。**一次使用应用程序密钥，第二次使用网络密钥。**每个密钥的长度为 128 位，并且加密算法在 CCM 模式下使用 AES。**由于它不了解任何密钥，因此不会加密应用程序层上的传出消息。另外，应用程序不知道或不在乎其自己的节点地址。当应用程序发送消息时，将添加目标地址，并由基础网格堆栈执行加密。 关键信息（例如节点地址，应用程序密钥，网络密钥，发布地址，订阅列表，密钥绑定和其他配置信息）完全由 smartBASIC 固件管理。仅在配网器将设备配置到网络中之后，此信息才可用。
+> **到消息广播时，它们已被加密两次。**一次使用应用程序密钥，第二次使用网络密钥。**每个密钥的长度为 128 位，并且加密算法在 CCM 模式下使用 AES。**由于它不了解任何密钥，因此不会加密应用程序层上的传出消息。另外，应用程序不知道或不在乎其自己的节点地址。当应用程序发送消息时，将添加目标地址，并由基础 mesh 协议栈执行加密。 关键信息（例如节点地址，应用程序密钥，网络密钥，发布地址，订阅列表，密钥绑定和其他配置信息）完全由 smartBASIC 固件管理。仅在配网器将设备配置到网络中之后，此信息才可用。
 

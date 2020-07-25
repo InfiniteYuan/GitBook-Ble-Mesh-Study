@@ -42,6 +42,7 @@
 * [Introducing Bluetooth Mesh Networking](https://www.bluetooth.com/blog/introducing-bluetooth-mesh-networking/)
 * [Introduction Bluetooth Mesh Networking for Developers](https://www.bluetooth.com/bluetooth-resources/bluetooth-mesh-networking-an-introduction-for-developers/?utm_campaign=mesh&utm_source=internal&utm_medium=blog&utm_content=the-fundamental-concepts-of-bluetooth-mesh-networking-part-2)
 * [Bluetooth Mesh Models - A Technical Overview](https://www.bluetooth.com/bluetooth-resources/bluetooth-mesh-models/)
+* [Bluetooth Mesh Security Overview](https://www.bluetooth.com/blog/bluetooth-mesh-security-overview/)
 * [Answers to Your Questions About Bluetooth Mesh](https://www.bluetooth.com/blog/answers-to-your-questions-about-bluetooth-mesh/)
 * [Qualified Mesh Products](https://www.bluetooth.com/learn-about-bluetooth/bluetooth-technology/topology-options/le-mesh/mesh-qualified/)
 

@@ -64,8 +64,6 @@ All nodes in a BLE mesh can transmit and receive messages but some nodes may hav
 > * **友好节点 -** 通过在低功耗​​节点轮询时存储和转发发往低功耗节点的消息，与低功耗节点一起工作
 > * **代理节点 -** 没有 Mesh 协议栈的设备可以使用代理节点的 GATT 承载与 BLE mesh 中的设备进行交互。
 
-
-
 ![](.gitbook/assets/specification_node_feature.png)
 
 ## Publish/Subscribe

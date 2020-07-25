@@ -16,6 +16,10 @@
 * [Architectural concepts](mesh-profile-specification/architectural-concepts.md)
 * [Mesh networking](mesh-profile-specification/mesh-networking.md)
 
+## Mesh Security Overview
+
+* [Mesh Security Overview](mesh-security-overview/mesh-security-overview.md)
+
 ## Bluetooth Mesh Models
 
 * [What is a Mesh Model?](bluetooth-mesh-models/what-is-a-mesh-model.md)

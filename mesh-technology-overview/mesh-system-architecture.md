@@ -14,9 +14,9 @@ At the bottom of the mesh architecture stack, we have a layer entitled Bluetooth
 
 We’ll now review each layer of the mesh architecture, working our way up from the bottom layer.
 
-> 在 mesh 体系结构栈的底部，我们有一个名为低功耗蓝牙的层。实际上，这不仅仅是 mesh 架构的单层，而是完整的低功耗蓝牙协议栈，它是提供基本无线通信功能所必需的，而基础层上的 mesh 架构则可以利用这些功能。应该清楚的是，mesh 系统取决于低功耗蓝牙协议栈栈的可用性。
+> 在 Mesh 协议栈的底部，我们有一个名为低功耗蓝牙的层。实际上，这不仅仅是 Mesh 架构的单层，而是完整的低功耗蓝牙协议栈，它是提供基本无线通信功能所必需的，而基础层上的 Mesh 架构则可以利用这些功能。应该清楚的是，Mesh 系统取决于低功耗蓝牙协议栈栈的可用性。
 >
-> 现在，我们将从底层开始逐层查看 mesh 架构的每一层。
+> 现在，我们将从底层开始逐层查看 Mesh 架构的每一层。
 
 ## Bearer Layer 
 
@@ -26,11 +26,11 @@ The **Advertising Bearer** leverages Bluetooth LE’s GAP advertising and scanni
 
 The **GATT Bearer** allows a device which does not support the Advertising Bearer to communicate indirectly with nodes of a mesh network which do, using a protocol known as the **Proxy Protocol**. The Proxy Protocol is encapsulated within GATT operations involving specially defined GATT characteristics. **A mesh Proxy node** implements these GATT characteristics and supports the GATT bearer as well as the Advertising Bearer so that it can convert and relay messages between the two types of bearer.
 
-> mesh 消息需要基础通信系统进行发送和接收。承载层定义给定通信系统如何处理 mesh PDU。此时，定义了两个承载层，它们分别称为广播承载层和 GATT 承载层。
+> Mesh 消息需要基础通信系统进行发送和接收。承载层定义给定通信系统如何处理 Mesh PDU。此时，定义了两个承载层，它们分别称为广播承载层和 GATT 承载层。
 >
-> 广播承载层利用低功耗蓝牙的 GAP 广播和扫描功能来发送和接收 mesh PDU。
+> 广播承载层利用低功耗蓝牙的 GAP 广播和扫描功能来发送和接收 Mesh PDU。
 >
-> GATT 承载层允许不支持广播承载层的设备使用代理协议与 mesh 网络的节点间接通信。代理协议封装在专门定义的 GATT 特性的 GAT T操作中。mesh 代理节点实现了这些 GATT 特性，并支持 GATT 承载层以及广播承载，因此它可以在两种类型的承载层之间转换和中继消息。
+> GATT 承载层允许不支持广播承载层的设备使用代理协议与 Mesh 网络的节点间接通信。代理协议封装在专门定义的 GATT 特性的 GAT T操作中。Mesh 代理节点实现了这些 GATT 特性，并支持 GATT 承载层以及广播承载，因此它可以在两种类型的承载层之间转换和中继消息。
 
 ## Network Layer 
 
@@ -42,7 +42,7 @@ It can support multiple bearers, each of which may have multiple network interfa
 
 **The Relay and Proxy features may be implemented by the network layer.** 
 
-> 网络层定义了各种消息地址类型和 mesh 消息格式，该格式允许承载层传输传输层 PDU。
+> 网络层定义了各种消息地址类型和 Mesh 消息格式，该格式允许承载层传输传输层 PDU。
 >
 > 它可以支持多个承载层，每个承载层可以具有多个网络接口，包括用于在同一节点内的元素之间进行通信的本地接口。
 >
@@ -80,7 +80,7 @@ It can support multiple bearers, each of which may have multiple network interfa
 
 **The foundation model layer is responsible for the implementation of those models concerned with the configuration and management of a mesh network.** 
 
-> 基础模型层负责实现与 mesh 网络的配置和管理有关的那些模型。
+> 基础模型层负责实现与 Mesh 网络的配置和管理有关的那些模型。
 
 ## Models Layer 
 

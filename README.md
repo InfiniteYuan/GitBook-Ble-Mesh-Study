@@ -20,7 +20,7 @@ In 2010, Bluetooth LE provided the next, major step forward. Its impact has been
 
 Wireless communications systems based around mesh network topologies have proved themselves to offer an effective approach to providing coverage of large areas, extending range and providing resilience. However, until now they have been based upon niche technologies, incompatible with most computer, smartphone and accessory devices owned by consumers or used in the enterprise.
 
-> 事实证明，基于网状\(mesh\)网络拓扑的无线通信系统可以提供一种有效的方法来覆盖大范围，扩展范围并提供弹性。但是，直到现在，它们还是基于 niche 技术，与消费者拥有或企业使用的大多数计算机，智能手机和附件设备不兼容。
+> 事实证明，基于网状\(Mesh\)网络拓扑的无线通信系统可以提供一种有效的方法来覆盖大范围，扩展范围并提供弹性。但是，直到现在，它们还是基于 niche 技术，与消费者拥有或企业使用的大多数计算机，智能手机和附件设备不兼容。
 
 The addition of mesh networking support represents a change of a type, and of such magnitude that it warrants being described as a paradigm shift for Bluetooth technology.
 
@@ -46,7 +46,7 @@ Heartbeat messages are sent periodically to indicate a node is still alive and h
 
 BLE mesh does not make use of connections but rather uses the BLE broadcasts \(advertisements\) introduced with BT4.0. This does not mean that all BT4.0 devices automatically support mesh \(the OS likely needs to expose a new API\) but devices that are BT4.0 devices and newer have the potential to support BLE mesh.
 
-> BLE mesh 不使用连接，而是使用 BT4.0 引入的 BLE 广播。这并不意味着所有 BT4.0 设备都自动支持 mesh（操作系统可能需要公开新的 API），但是 BT4.0 设备及更高版本的设备有可能支持 BLE mesh。
+> BLE mesh 不使用连接，而是使用 BT4.0 引入的 BLE 广播。这并不意味着所有 BT4.0 设备都自动支持 Mesh（操作系统可能需要公开新的 API），但是 BT4.0 设备及更高版本的设备有可能支持 BLE mesh。
 
 ## Topology
 
@@ -62,7 +62,7 @@ All nodes in a BLE mesh can transmit and receive messages but some nodes may hav
 > * **中继节点** - 可以接收和重新广播（中继）消息
 > * **低功耗节点** - 大部分时间都处于低功耗状态并且射频处于关闭状态
 > * **友好节点 -** 通过在低功耗​​节点轮询时存储和转发发往低功耗节点的消息，与低功耗节点一起工作
-> * **代理节点 -** 没有 mesh 协议栈的设备可以使用代理节点的 GATT 承载与 BLE mesh 中的设备进行交互。
+> * **代理节点 -** 没有 Mesh 协议栈的设备可以使用代理节点的 GATT 承载与 BLE mesh 中的设备进行交互。
 
 
 
@@ -76,13 +76,13 @@ All nodes in a BLE mesh can transmit and receive messages but some nodes may hav
 
 **Each message consists of an opcode and context data.** The opcode dictates the behavior at the receive end; the data can be **up to 380 octets**. By the time the application receives a mesh message, it is completely decrypted and given to the app as a plaintext message.
 
-> **每个消息都包含一个操作码和上下文数据**。操作码指示接收端的行为；数据**最多可以包含 380 个八位位组**。 在应用程序收到 mesh 消息时，它已被完全解密并作为纯文本消息提供给应用程序。
+> **每个消息都包含一个操作码和上下文数据**。操作码指示接收端的行为；数据**最多可以包含 380 个八位位组**。 在应用程序收到 Mesh 消息时，它已被完全解密并作为纯文本消息提供给应用程序。
 
 ## Provisioning
 
 When a mesh device is initially powered up, it is not provisioned. This means that it does not have a node address nor any other configuration information. In that state, when powered, it sends out **‘un-provisioned’ beacons** upon which a provisioner acts. To become part of a mesh network, the device must first be provisioned. **To do this, a mesh provisioner sends configuration information to the un-provisioned device.**
 
-> mesh 设备第一次上电时，它是没有被配网的。这意味着它没有节点地址，也没有任何其他配置信息。在这种状态下，通电后，它将发出“未配置”的信标，配网器将根据该信标进行操作。要成为 mesh 网络的一部分，必须首先配置该设备。**为此，mesh 配网器会将配置信息发送到未配置的设备。**
+> Mesh 设备第一次上电时，它是没有被配网的。这意味着它没有节点地址，也没有任何其他配置信息。在这种状态下，通电后，它将发出“未配置”的信标，配网器将根据该信标进行操作。要成为 Mesh 网络的一部分，必须首先配置该设备。**为此，Mesh 配网器会将配置信息发送到未配置的设备。**
 
 **A provisioner is the only entity in a mesh** that 1\) is aware of **all the members of the network** and 2\) **knows how to program the publication address and the subscription lists of all the nodes** \(which enables the nodes to operate as a well-choreographed collective\). **Individual nodes are never aware of the full picture of the mesh network.**
 
@@ -106,5 +106,5 @@ The term group address is simply an address value in the **range 0xC000 to 0xFEF
 
 **By the time the messages are on the air, they have been encrypted twice.** Once with an application key and the second time with a network key. **Each key is 128-bit long and the encryption algorithm uses AES in CCM mode.** Because it does not have any knowledge of the keys, an outgoing message at the application layer is not encrypted. In addition, an application does not know or care about its own node address. When an application sends the message, the destination address is added and the encryption is performed by the underlying mesh stack. Critical information such as node address, app keys, net keys, publication address, subscription list, key bindings, and other configuration information is wholly managed by the smartBASIC firmware. This information is only available after a provisioner provisions the device into a network.
 
-> **到消息广播时，它们已被加密两次。**一次使用应用程序密钥，第二次使用网络密钥。**每个密钥的长度为 128 位，并且加密算法在 CCM 模式下使用 AES。**由于它不了解任何密钥，因此不会加密应用程序层上的传出消息。另外，应用程序不知道或不在乎其自己的节点地址。当应用程序发送消息时，将添加目标地址，并由基础 mesh 协议栈执行加密。 关键信息（例如节点地址，应用程序密钥，网络密钥，发布地址，订阅列表，密钥绑定和其他配置信息）完全由 smartBASIC 固件管理。仅在配网器将设备配置到网络中之后，此信息才可用。
+> **到消息广播时，它们已被加密两次。**一次使用应用程序密钥，第二次使用网络密钥。**每个密钥的长度为 128 位，并且加密算法在 CCM 模式下使用 AES。**由于它不了解任何密钥，因此不会加密应用程序层上的传出消息。另外，应用程序不知道或不在乎其自己的节点地址。当应用程序发送消息时，将添加目标地址，并由基础 Mesh 协议栈执行加密。 关键信息（例如节点地址，应用程序密钥，网络密钥，发布地址，订阅列表，密钥绑定和其他配置信息）完全由 smartBASIC 固件管理。仅在配网器将设备配置到网络中之后，此信息才可用。
 

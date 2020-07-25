@@ -26,14 +26,14 @@ The following fundamental security statements apply to all Bluetooth mesh networ
 6. The process by which devices are added to the mesh network to become nodes, **（Provisioning）is itself a secure process**.
 7. Nodes can be removed from the network securely, in a way which **prevents trashcan attacks**.
 
-> 以下基本安全声明适用于所有蓝牙 mesh 网络： 
+> 以下基本安全声明适用于所有蓝牙 Mesh 网络： 
 >
-> 1. 所有 mesh 消息均已加密和认证。 
+> 1. 所有 Mesh 消息均已加密和认证。 
 > 2. 网络安全性，应用程序安全性和设备安全性是独立解决的。
-> 3. 可以在 mesh 网络的生存期内通过“密钥刷新”过程来更改安全密钥。
+> 3. 可以在 Mesh 网络的生存期内通过“密钥刷新”过程来更改安全密钥。
 > 4. 消息混淆使跟踪网络内发送的消息变得困难，从而提供了一种隐私机制，使跟踪节点变得困难。
-> 5. mesh 安全保护网络免受重放攻击。
-> 6. 将设备添加到 mesh 网络以成为节点的过程（配网）本身就是安全的过程。
+> 5. Mesh 安全保护网络免受重放攻击。
+> 6. 将设备添加到 Mesh 网络以成为节点的过程（配网）本身就是安全的过程。
 > 7. 可以通过防止垃圾桶攻击的方式将节点安全地从网络中删除。
 
 ## Separation of Concerns and Mesh Security Keys
@@ -58,17 +58,17 @@ To deal with this potential conflict of interest, the **mesh uses different secu
 
 **The final key type is the device key \(DevKey\)**. This is a special type of application key. **Each node has a unique DevKey known to the Provisioner device and no other**. The DevKey is used in **the provisioning process to secure communication between the Provisioner and the node.** 
 
-> 蓝牙 mesh 安全性的核心是三种类型的安全性密钥。在它们之间，这些密钥为 mesh 的不同方面提供安全性，并实现了 mesh 安全性的关键功能，即“关注点分离”。
+> 蓝牙 Mesh 安全性的核心是三种类型的安全性密钥。在它们之间，这些密钥为 Mesh 的不同方面提供安全性，并实现了 Mesh 安全性的关键功能，即“关注点分离”。
 >
-> 要了解这一点并理解其重要性，请考虑可以充当中继器的 mesh 灯。以中继的身份，它可能会发现自己正在处理与建筑物的蓝牙 mesh 门窗安全系统有关的消息。灯没有业务能够访问和处理此类消息的详细信息，但确实需要将它们的消息中继到其他节点。
+> 要了解这一点并理解其重要性，请考虑可以充当中继器的 Mesh 灯。以中继的身份，它可能会发现自己正在处理与建筑物的蓝牙 Mesh 门窗安全系统有关的消息。灯没有业务能够访问和处理此类消息的详细信息，但确实需要将它们的消息中继到其他节点。
 >
-> 为了处理这种潜在的利益冲突，mesh 使用不同的安全密钥来保护网络层上的消息，这些不同的密钥用于保护与特定应用（例如照明，物理安全，加热等）有关的消息。
+> 为了处理这种潜在的利益冲突，Mesh 使用不同的安全密钥来保护网络层上的消息，这些不同的密钥用于保护与特定应用（例如照明，物理安全，加热等）有关的消息。
 >
-> mesh 网络中的所有节点都拥有网络密钥（NetKey）。确实，拥有此共享密钥才使节点成为网络的成员。网络加密密钥和隐私密钥直接从 NetKey 派生。
+> Mesh 网络中的所有节点都拥有网络密钥（NetKey）。确实，拥有此共享密钥才使节点成为网络的成员。网络加密密钥和隐私密钥直接从 NetKey 派生。
 >
 > 拥有 NetKey 可以使节点解密消息并认证到网络层，从而可以执行诸如中继之类的网络功能。它不允许对应用程序数据进行解密。
 >
-> 可以将 mesh 细分为子网，每个子网都有自己的 NetKey，该 NetKey 仅由属于该子网成员的那些节点拥有。例如，这可用于隔离特定的物理区域，例如旅馆中的每个房间。
+> 可以将 Mesh 细分为子网，每个子网都有自己的 NetKey，该 NetKey 仅由属于该子网成员的那些节点拥有。例如，这可用于隔离特定的物理区域，例如旅馆中的每个房间。
 >
 > 特定应用程序的应用程序数据只能由拥有正确应用程序密钥（AppKey）的节点解密。在 Mesh 网络的各个节点之间，可能有许多不同的 AppKey，但是通常，每个 AppKey 仅由所有节点中的一小部分节点拥有，即那些可以参与给定应用程序的节点。例如，灯光和电灯开关将拥有照明应用程序的 AppKey，而不拥有供暖系统的 Ap​​pKey，而暖气系统的 Ap​​pKey 仅由恒温器，散热器上的阀门等拥有。
 >
@@ -88,7 +88,7 @@ The Key Refresh Procedure results in all nodes in the network, except for those 
 
 As such, the node which was removed from the network and which contains an old NetKey and an old set of AppKeys, is no longer a member of the network and poses no threat. 
 
-> 如上所述，节点包含各种 mesh 安全密钥。如果某个节点出现故障并需要处理，或者所有者决定将该节点出售给另一个所有者，那么重要的是，不能使用该设备及其包含的密钥来对该节点原来的 mesh 网络进行攻击。
+> 如上所述，节点包含各种 Mesh 安全密钥。如果某个节点出现故障并需要处理，或者所有者决定将该节点出售给另一个所有者，那么重要的是，不能使用该设备及其包含的密钥来对该节点原来的 Mesh 网络进行攻击。
 >
 > 定义了从网络中删除节点的过程。配网器应用程序用于将节点添加到黑名单，然后启动“密钥刷新过程”过程。
 >
@@ -112,5 +112,5 @@ In network security, a replay attack is a technique whereby an eavesdropper inte
 
 > 在网络安全中，重放攻击是一种技术，窃听者拦截并捕获一条或多条消息，然后简单地重新传输它们，目的是欺骗接收者，以执行未经授权的设备攻击。通常被引用的一个例子是，汽车的无钥匙进入系统受到攻击者的攻击，拦截了汽车所有者与汽车之间的身份验证序列，然后重放这些消息以进入汽车并窃取它。
 >
-> 蓝牙 mesh 网络具有防止重放攻击的保护。这种保护的基础是使用两个网络 PDU 字段，分别称为序列号（SEQ）和 IV 索引。元素每次发布消息时都会递增 SEQ 值。从某个节点接收到的消息中的 SEQ 值小于或等于最后一个有效消息中的 SEQ 值的节点，将丢弃它，因为它可能与重放攻击有关。IV 索引是一个单独的字段，与 SEQ 一起考虑。给定元素的消息中的 IV 索引值必须始终等于或大于该元素的最后一条有效消息。
+> 蓝牙 Mesh 网络具有防止重放攻击的保护。这种保护的基础是使用两个网络 PDU 字段，分别称为序列号（SEQ）和 IV 索引。元素每次发布消息时都会递增 SEQ 值。从某个节点接收到的消息中的 SEQ 值小于或等于最后一个有效消息中的 SEQ 值的节点，将丢弃它，因为它可能与重放攻击有关。IV 索引是一个单独的字段，与 SEQ 一起考虑。给定元素的消息中的 IV 索引值必须始终等于或大于该元素的最后一条有效消息。
 

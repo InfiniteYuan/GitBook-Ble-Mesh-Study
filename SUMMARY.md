@@ -33,7 +33,7 @@
 
 * [Lighting](lighting/lighting-model.md)
 
-## 参考链接 <a id="reference"></a>
+## Reference Links
 
 * [Bluetooth Mesh](https://www.bluetooth.com/learn-about-bluetooth/bluetooth-technology/mesh/)
 * [BLE Mesh Introduction](https://connectivity-staging.s3.us-east-2.amazonaws.com/s3fs-public/2018-10/BLE%20Mesh%20Introduction.pdf)

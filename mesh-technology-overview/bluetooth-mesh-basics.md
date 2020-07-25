@@ -242,7 +242,7 @@ Generics allow a wide range of device type to support Bluetooth mesh without the
 
 Imagine that in the evening, you like the temperature in your main family room to be 20 degrees Celsius, the six LED downlights to be at a certain brightness level and the lamp in the corner of the room on the table, set to a nice warm yellow hue. Having manually set the various nodes in this example scenario to these states, you can store them as a scene using a configuration application, and recall the scene later on, either on demand by sending an appropriate, scene-related mesh message or automatically at a scheduled time. 
 
-> 场景是状态的存储集合，可以通过接收特殊类型的消息或在指定时间将其调回并使其成为最新状态。场景由16位场景编号标识，该编号在网状网络中是唯一的。场景允许在一个协调的动作中将一系列节点设置为一组给定的先前存储的互补状态。
+> 场景是状态的存储集合，可以通过接收特殊类型的消息或在指定时间将其调回并使其成为最新状态。场景由16位场景编号标识，该编号在 Mesh 网络中是唯一的。场景允许在一个协调的动作中将一系列节点设置为一组给定的先前存储的互补状态。
 >
 > 想象一下，在晚上，您希望您的主要家庭房间的温度为 20 摄氏度，六个 LED 筒灯处于一定的亮度水平，桌子上的房间角落的灯被设置为暖黄色。在此示例场景中将各个节点手动设置为这些状态后，您可以使用配置应用程序将它们存储为场景，之后可以通过发送与场景相关的 mesh 消息调用场景，或者在设置的时间点调用场景。
 

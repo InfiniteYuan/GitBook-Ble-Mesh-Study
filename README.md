@@ -38,7 +38,7 @@ BLE mesh is a managed flood network which broadcasts \(BLE advertisement\) a mes
 
 BLE mesh networks use relay nodes rather than nodes that function as routers. Routers can be a single point of failure that can then result in a full network failure. By not relying on routers, these mesh networks that use flooding are far more reliable. BLE mesh messages can be received from any node within range, even if an intermediary node fails or is removed from the network.
 
-> BLE mesh 网络使用中继节点，而不是充当路由器的节点。路由器可以是单点故障，然后可能导致整个网络故障。通过不依赖路由器，这些使用泛洪的网状网络更加可靠。即使中间节点发生故障或已从网络中删除，BLE 消息也可以从范围内的任何节点接收。
+> BLE mesh 网络使用中继节点，而不是充当路由器的节点。路由器可以是单点故障，然后可能导致整个网络故障。通过不依赖路由器，这些使用泛洪的 Mesh 网络更加可靠。即使中间节点发生故障或已从网络中删除，BLE 消息也可以从范围内的任何节点接收。
 
 Heartbeat messages are sent periodically to indicate a node is still alive and how many hops it may be from another node. This information can be used to optimise the TTL value.
 
@@ -86,7 +86,7 @@ When a mesh device is initially powered up, it is not provisioned. This means th
 
 **A provisioner is the only entity in a mesh** that 1\) is aware of **all the members of the network** and 2\) **knows how to program the publication address and the subscription lists of all the nodes** \(which enables the nodes to operate as a well-choreographed collective\). **Individual nodes are never aware of the full picture of the mesh network.**
 
-> 配网器是 mesh 网络中唯一的实体，该实体1）知道网络的所有成员，2）知道如何对所有节点的发布地址和订阅列表进行编程（这使节点可以像编排的集体）。各个节点永远不会意识到网状网络的全貌。
+> 配网器是 Mesh 网络中唯一的实体，该实体1）知道网络的所有成员，2）知道如何对所有节点的发布地址和订阅列表进行编程（这使节点可以像编排的集体）。各个节点永远不会意识到 Mesh 网络的全貌。
 
 For example, in an office commissioned with 50 lights and 20 switches, **only the provisioner is aware of the node addresses of all 70 devices.** The individual lights and switches have no need for this information. The provisioner creates group addresses for each office region then sets the publication addresses in the switches and the subscription addresses in the lights according to the applicable group address. When a light switch’s state changes, it publishes a group address and the applicable subscribed lights behave accordingly.
 

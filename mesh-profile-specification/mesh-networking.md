@@ -264,5 +264,62 @@ The process of segmentation for Upper Transport Access PDUs and Upper Transport 
 
 ## Mesh network management
 
+### IV Update procedure
+
+The IV Index provides entropy for the nonce used for the authenticated encryption \(AES-CCM\) in both the application and network layers. Therefore, it must be changed often enough to avoid repeated use of sequence numbers in the nonce. **The IV Update procedure is initiated by any node that is a member of a primary subnet.** This may be done when the node believes it is at risk of exhausting its sequence numbers, or it determines another node is close to exhausting its sequence numbers. The node changes its IV Index and sends an indication to other nodes in the mesh that the IV Index is being updated. This is then followed by a change back to normal operation by the same or some other node in the mesh.
+
+At least one node with the Secure Network Beacon state set to 1, on a connected subnet with a key index different from 0x000, must also be on the primary subnet. 
+
+> Note: Nodes that rarely send messages will rarely initiate the IV Update procedure.
+
+The IV Update procedure defines two states of operation: 
+
+* Normal Operation – IV Update Flag = 0
+* IV Update in Progress – IV Update Flag = 1
+
+During the Normal Operation state, the IV Update Flag in the Secure Network beacon and in the Friend Update message shall be set to 0. **When this state is active, a node shall transmit using the current IV Index and shall process messages from the current IV Index and also the current IV Index - 1.**
+
+For example, when IV Update Flag is set to 0, and the current IV Index is equal to 0x00101847, then the node shall transmit using the IV Index 0x00101847 and accept messages received using the IV Index 0x00101847 when the IVI field in the network layer is set to 1, and 0x00101846 when the IVI field in the network layer is set to 0. 
+
+**If a node in Normal Operation receives a Secure Network beacon with an IV index greater than the last known IV Index + 1, it may initiate an IV Index Recovery procedure.** 
+
+If a node in Normal Operation receives a Secure Network beacon with an IV index equal to the last known IV index+1 and the IV Update Flag set to 0, the node may update its IV without going to the IV Update in Progress state, or it may initiate an IV Index Recovery procedure, or it may ignore the Secure Network beacon. The node makes the choice depending on the time since last IV update and the likelihood that the node has missed the Secure Network beacons with the IV update Flag set to 1. 
+
+If a node in Normal Operation receives a Secure Network beacon with an IV index less than the last known IV Index or greater than the last known IV Index + 42, the Secure Network beacon shall be ignored. 
+
+> Note: This above requirement allows a node to be away from the network for **48 weeks**. A node that is away from a network for longer than 48 weeks must be reprovisioned.
+
+If this node is a member of a primary subnet and receives a Secure Network beacon on a secondary subnet with an IV Index greater than the last known IV Index of the primary subnet, the Secure Network beacon shall be ignored. 
+
+A node shall not start an IV Update procedure more often than once every 192 hours. 
+
+**After 96 hours of operating in Normal Operation**, a node may initiate the IV Update procedure by transitioning to the IV Update in Progress state. When a node transitions from the Normal Operation state to the IV Update in Progress state, the IV Index on the node shall be incremented by one. 
+
+The transition from Normal Operation state to IV Update in Progress state must occur at **least 96 hours** before the sequence numbers are exhausted.
+
+A node that is in Normal Operation state that receives and accepts a Secure Network beacon with the IV Update Flag set to 1 \(indicating the IV Update in Progress state\) should transition to the IV Update in Progress state as soon as possible. 
+
+During the IV Update in Progress state, the IV Update Flag in the Secure Network beacon and in the Friend Update message shall be set to 1. **When this state is active, a node shall transmit using the current IV Index - 1 and shall process messages from the current IV Index - 1 and also the current IV Index.** 
+
+For example, if the IV Index was 0x00101847 before transitioning from the Normal Operation state to the IV Update in Progress state, after transitioning, the IV Update Flag will be 1, the current IV Index will be 0x00101848, and the node shall transmit using the IV Index 0x00101847 and accept messages received using the IV Index 0x00101847 when the IVI field in the network layer is set to 1 and 0x00101848 when the IVI field in the network layer is set to 0. This allows all nodes that are in the Normal Operation state using the old IV Index to send messages to this node, and this node sends messages to those nodes that have not yet transitioned.
+
+After at least 96 hours and before 144 hours of operating in IV Update in Progress state, the node shall transition back to the IV Normal Operation state and not change the IV Index. At the point of transition, the node shall reset the sequence number to 0x000000. 
+
+For example, when transitioning back to the Normal Operation state, the IV Update Flag will be 0, the current IV Index will be 0x00101848, the node shall transmit using the IV Index 0x00101848 and accept messages received using the IV Index 0x00101847 when the IVI field in the network layer is set to 1 and 0x00101848 when the IVI field in the network layer is set to 0. This allows the node to send messages to all nodes in the network whether they are also in the Normal Operation state or in the IV Update in Progress state. It also allows the node to receive messages from all nodes that are in the Normal Operation state or the IV Update in Progress state. A summary of the IV Update procedure is provided in Table below.
+
+| IV Index | IV Update Flag | IV Update Procedure State | IV Index Accepted | IV Index used when transmitting |
+| :--- | :--- | :--- | :--- | :--- |
+| n | 0 | Normal | n-1, n | n |
+| m \(m=n+1\) | 1 | In Progress | m-1, m | m-1 |
+| m | 0 | Normal | m-1, m | m |
+
+A node that is in the IV Update in Progress state that receives and accepts a Secure Network beacon with the IV Update Flag set to 0 \(indicating the Normal Operation state\) should transition into the Normal Operation state as soon as possible. 
+
+A node shall defer state change from IV Update in Progress to Normal Operation, as defined by this procedure, when the node has transmitted a Segmented Access message or a Segmented Control message without receiving the corresponding Segment Acknowledgment messages. The deferred change of the state shall be executed when the appropriate Segment Acknowledgment message is received or timeout for the delivery of this message is reached. 
+
+> Note: This requirement is necessary because upon completing the IV Update procedure the sequence number is reset to 0x000000 and the SeqAuth value would not be valid.
+
+When a node is added to a network, the node is given an IV Index. If the node is added to a network when the network is in Normal operation, then it shall operate in Normal operation for at least 96 hours. If a node is added to a network while the network is in the IV Update in Progress state, then the node shall be given the new IV Index value and operate in Normal operation for at least 96 hours.
+
 ## Message processing flow
 
